@@ -29,5 +29,7 @@ namespace RentalSite.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<RentalSite.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }
