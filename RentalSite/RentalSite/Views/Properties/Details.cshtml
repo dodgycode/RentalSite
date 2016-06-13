@@ -1,0 +1,43 @@
+﻿@model RentalSite.Models.Property
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Property</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertyAddress.AddressLine1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertyAddress.AddressLine1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertyDetails.PropertyDetailsId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertyDetails.PropertyDetailsId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PropertyId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

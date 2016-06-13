@@ -89,6 +89,7 @@ namespace RentalSite.Models
     public class Property
     {
         public Guid PropertyId { get; set; }
+        [Display(Name ="Property Name")]
         public string Name { get; set; }
         public virtual Details PropertyDetails { get; set;}
         public virtual Address PropertyAddress { get; set; }
@@ -99,8 +100,11 @@ namespace RentalSite.Models
     {
         public Guid PropertyDetailsId { get; set; }
         public Guid PropertyId { get; set; }
+        [Display(Name ="Sleeps")]
         public int NumSleeps { get; set; }
+        [Display(Name = "Number of bedrooms")]
         public int NumBedrooms { get; set; }
+        [Display(Name = "Number of bathrooms")]
         public int NumBathrooms { get; set; }
         public ParkingType Parking { get; set; }
         public virtual Property CurrProperty { get; set; }
@@ -110,10 +114,15 @@ namespace RentalSite.Models
     {
         public Guid AddressId { get; set; }
         public Guid PropertyId { get; set; }
+        [Display(Name = "Address line 1")]
         public string AddressLine1 { get; set; }
+        [Display(Name = "Address line 2")]
         public string AddressLine2 { get; set; }
+        [Display(Name = "Address line 3")]
         public string AddressLine3 { get; set; }
+        [Display(Name = "Address line 4")]
         public string AddressLine4 { get; set; }
+        [Display(Name = "Address line 5")]
         public string AddressLine5 { get; set; }
         public string Postcode { get; set; }
         public virtual Property CurrProperty { get; set; }
@@ -124,6 +133,7 @@ namespace RentalSite.Models
     public enum ParkingType
     {
         None,
+        [Display(Name = "On street")]
         OnStreet,
         Garage,
         Driveway

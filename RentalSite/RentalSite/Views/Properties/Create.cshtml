@@ -1,0 +1,110 @@
+﻿@model RentalSite.Models.Property
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List your property!</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="form-control-static">
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.Name)
+                    @Html.TextBoxFor(model => model.Name)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.PropertyAddress.AddressLine1)
+                    @Html.TextBoxFor(model => model.PropertyAddress.AddressLine1)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.PropertyAddress.AddressLine2)
+                    @Html.TextBoxFor(model => model.PropertyAddress.AddressLine2)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.PropertyAddress.AddressLine3)
+                    @Html.TextBoxFor(model => model.PropertyAddress.AddressLine3)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.PropertyAddress.AddressLine4)
+                    @Html.TextBoxFor(model => model.PropertyAddress.AddressLine4)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.PropertyAddress.AddressLine5)
+                    @Html.TextBoxFor(model => model.PropertyAddress.AddressLine5)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.PropertyAddress.Postcode)
+                    @Html.TextBoxFor(model => model.PropertyAddress.Postcode)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.PropertyDetails.NumSleeps)
+                    @Html.TextBoxFor(model => model.PropertyDetails.NumSleeps)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.PropertyDetails.NumBedrooms)
+                    @Html.TextBoxFor(model => model.PropertyDetails.NumBedrooms)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.PropertyDetails.NumBathrooms)
+                    @Html.TextBoxFor(model => model.PropertyDetails.NumBathrooms)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.PropertyDetails.Parking)
+                    @Html.EnumDropDownListFor(model => model.PropertyDetails.Parking)
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

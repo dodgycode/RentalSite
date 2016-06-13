@@ -52,13 +52,14 @@ audio:not([controls]) {
 }
 
 html {
-  font-family: sans-serif;
+  font-family:'Forum', sans-serif ;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
+  font-family:'Forum';
 }
 
 a:focus {
@@ -73,6 +74,7 @@ a:hover {
 h1 {
   margin: 0.67em 0;
   font-size: 2em;
+  font-family:'Tangerine';
 }
 
 abbr[title] {
