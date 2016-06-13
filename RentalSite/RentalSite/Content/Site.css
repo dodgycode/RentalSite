@@ -1,13 +1,16 @@
-﻿@import url(https://fonts.googleapis.com/css?family=Droid+Sans|Lobster);
+﻿@import url(https://fonts.googleapis.com/css?family=Abril+Fatface|Open+Sans);
 body {
     padding-top: 50px;
     padding-bottom: 20px;
-    font-family:'Droid Sans';
+    font-family:'Open Sans';
+    background: url(/Images/vichy.png);
     background-color:cadetblue;
+    border-color:black;
 }
 
 h1,h2,h3,h4,h5,h6 {
-    font-family:'Lobster';
+    font-family:'Abril Fatface';
+    color:cadetblue;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -18,7 +21,6 @@ h1,h2,h3,h4,h5,h6 {
     border-bottom-left-radius:10px;
     border-bottom-right-radius:10px;
 }
-
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -35,71 +37,82 @@ textarea {
 }
 
 /* navbar */
-.navbar-inverse {
-    background-color: white;
-    border-color: #E7E7E7;
+.navbar-default {
+    background-color:whitesmoke;
 }
 /* title */
-.navbar-inverse .navbar-brand {
+.navbar-default .navbar-brand {
+    
     color: cadetblue;
 }
-.navbar-inverse .navbar-brand:hover,
-.navbar-inverse .navbar-brand:focus {
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
     color: #5E5E5E;
 }
 /* link */
-.navbar-inverse .navbar-nav > li > a {
+.navbar-default .navbar-nav > li > a {
     color: #777;
 }
-.navbar-inverse .navbar-nav > li > a:hover,
-.navbar-inverse .navbar-nav > li > a:focus {
-    color: #333;
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: cadetblue;
 }
-.navbar-inverse .navbar-nav > .active > a, 
-.navbar-inverse .navbar-nav > .active > a:hover, 
-.navbar-inverse .navbar-nav > .active > a:focus {
+.navbar-default .navbar-nav > .active > a, 
+.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > .active > a:focus {
     color: #555;
     background-color: #E7E7E7;
 }
-.navbar-inverse .navbar-nav > .open > a, 
-.navbar-inverse .navbar-nav > .open > a:hover, 
-.navbar-inverse .navbar-nav > .open > a:focus {
+.navbar-default .navbar-nav > .open > a, 
+.navbar-default .navbar-nav > .open > a:hover, 
+.navbar-default .navbar-nav > .open > a:focus {
     color: #555;
     background-color: #D5D5D5;
 }
 /* caret */
-.navbar-inverse .navbar-nav > .dropdown > a .caret {
+.navbar-default .navbar-nav > .dropdown > a .caret {
     border-top-color: #777;
     border-bottom-color: #777;
 }
-.navbar-inverse .navbar-nav > .dropdown > a:hover .caret,
-.navbar-inverse .navbar-nav > .dropdown > a:focus .caret {
+.navbar-default .navbar-nav > .dropdown > a:hover .caret,
+.navbar-default .navbar-nav > .dropdown > a:focus .caret {
     border-top-color: #333;
     border-bottom-color: #333;
 }
-.navbar-inverse .navbar-nav > .open > a .caret, 
-.navbar-inverse .navbar-nav > .open > a:hover .caret, 
-.navbar-inverse .navbar-nav > .open > a:focus .caret {
+.navbar-default .navbar-nav > .open > a .caret, 
+.navbar-default .navbar-nav > .open > a:hover .caret, 
+.navbar-default .navbar-nav > .open > a:focus .caret {
     border-top-color: #555;
     border-bottom-color: #555;
 }
 /* mobile version */
-.navbar-inverse .navbar-toggle {
+.navbar-default .navbar-toggle {
     border-color: #DDD;
 }
-.navbar-inverse .navbar-toggle:hover,
-.navbar-inverse .navbar-toggle:focus {
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
     background-color: #DDD;
 }
-.navbar-inverse .navbar-toggle .icon-bar {
+.navbar-default .navbar-toggle .icon-bar {
     background-color: #CCC;
 }
 @media (max-width: 767px) {
-    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
         color: #777;
     }
-    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
-    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
         color: #333;
     }
+}
+
+.jumbotron {
+    background-color: cadetblue;
+    color: whitesmoke;
+    opacity: 0.7;
+}
+
+.btn-default{
+    background-color: ThreeDDarkShadow;
+    color:whitesmoke;
 }
