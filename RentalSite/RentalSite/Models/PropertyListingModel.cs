@@ -21,6 +21,7 @@ namespace RentalSite.Models
         }
         #endregion
 
+        #region On model create
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //Configure default schema
@@ -30,11 +31,13 @@ namespace RentalSite.Models
             modelBuilder.Entity<Property>().ToTable("Property");
             modelBuilder.Entity<Address>().ToTable("Address");
             modelBuilder.Entity<Details>().ToTable("PropertyDetails");
+            modelBuilder.Entity<PropertyImages>().ToTable("PropertyImages");
 
             //Set primary keys
             modelBuilder.Entity<Property>().HasKey(p => p.PropertyId);
             modelBuilder.Entity<Address>().HasKey(a => a.AddressId);
             modelBuilder.Entity<Details>().HasKey(d => d.PropertyDetailsId);
+            modelBuilder.Entity<PropertyImages>().HasKey(i => i.ImageId);
 
             //Configure Property columns
             modelBuilder.Entity<Property>()
@@ -66,6 +69,14 @@ namespace RentalSite.Models
              .Property(p => p.Postcode)
              .HasMaxLength(10);
 
+            modelBuilder.Entity<PropertyImages>()
+             .Property(p => p.Title)
+             .HasMaxLength(150);
+
+            modelBuilder.Entity<PropertyImages>()
+            .Property(p => p.Caption)
+            .HasMaxLength(250);
+
             //Set Foreign Keys
             modelBuilder.Entity<Property>()
                 .HasOptional<Address>(p => p.PropertyAddress)
@@ -74,7 +85,13 @@ namespace RentalSite.Models
             modelBuilder.Entity<Property>()
                 .HasOptional<Details>(p => p.PropertyDetails)
                 .WithRequired(d => d.CurrProperty);
+
+            modelBuilder.Entity<Property>()
+                .HasOptional<PropertyImages>(p => p.PropertyImages)
+                .WithRequired(i => i.CurrProperty);
         }
+        #endregion
+
         #region DbSet entities
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
@@ -82,25 +99,32 @@ namespace RentalSite.Models
         public virtual DbSet<Property> Properties { get; set; }
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Details> Details { get; set; }
+        public virtual DbSet<PropertyImages> PropertyImages { get; set; }
         #endregion
     }
 
     #region Data classes
+    /// <summary>
+    /// Top level property class
+    /// </summary>
     public class Property
     {
         public Guid PropertyId { get; set; }
-        [Display(Name ="Property Name")]
+        [Display(Name = "Property Name")]
         public string Name { get; set; }
-        public virtual Details PropertyDetails { get; set;}
+        public virtual Details PropertyDetails { get; set; }
         public virtual Address PropertyAddress { get; set; }
-
+        public virtual PropertyImages PropertyImages { get; set; }
     }
 
+    /// <summary>
+    /// Property details (e.g. number of bedrooms)
+    /// </summary>
     public class Details
     {
         public Guid PropertyDetailsId { get; set; }
         public Guid PropertyId { get; set; }
-        [Display(Name ="Sleeps")]
+        [Display(Name = "Sleeps")]
         public int NumSleeps { get; set; }
         [Display(Name = "Number of bedrooms")]
         public int NumBedrooms { get; set; }
@@ -110,6 +134,9 @@ namespace RentalSite.Models
         public virtual Property CurrProperty { get; set; }
     }
 
+    /// <summary>
+    /// Property address
+    /// </summary>
     public class Address
     {
         public Guid AddressId { get; set; }
@@ -125,6 +152,20 @@ namespace RentalSite.Models
         [Display(Name = "Address line 5")]
         public string AddressLine5 { get; set; }
         public string Postcode { get; set; }
+        public virtual Property CurrProperty { get; set; }
+    }
+
+    /// <summary>
+    /// Property images. BlobRef links to Azure blob storage using AzureStorageHelper.
+    /// </summary>
+    public class PropertyImages
+    {
+        public Guid ImageId { get; set; }
+        public Guid PropertyId { get; set; }
+        [Required]
+        public string BlobRef { get; set; }
+        public string Title { get; set; }
+        public string Caption { get; set; }
         public virtual Property CurrProperty { get; set; }
     }
     #endregion

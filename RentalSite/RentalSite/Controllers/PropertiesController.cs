@@ -9,8 +9,11 @@ namespace RentalSite.Controllers
 {
     public class PropertiesController : Controller
     {
+        /// <summary>
+        /// Datacontext for PropertyListingModel
+        /// </summary>
         private PropertyListingModel db = new PropertyListingModel();
-
+        
         // GET: Properties
         public ActionResult Index()
         {
@@ -36,9 +39,8 @@ namespace RentalSite.Controllers
         // GET: Properties/Create
         public ActionResult Create()
         {
-            ViewBag.PropertyId = new SelectList(db.Addresses, "AddressId", "AddressLine1");
-            ViewBag.PropertyId = new SelectList(db.Details, "PropertyDetailsId", "PropertyDetailsId");
-            return View();
+            Property newProperty = new Property();
+            return View(newProperty);
         }
 
         // POST: Properties/Create
@@ -46,14 +48,18 @@ namespace RentalSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PropertyId,Name")] Property property)
+        public ActionResult Create([Bind(Include = "PropertyId,Name, PropertyAddress, PropertyDetails")] Property property)
         {
             if (ModelState.IsValid)
             {
                 property.PropertyId = Guid.NewGuid();
+                property.PropertyDetails.PropertyDetailsId = Guid.NewGuid();
+                property.PropertyDetails.PropertyId = property.PropertyId;
+                property.PropertyAddress.AddressId = Guid.NewGuid();
+                property.PropertyAddress.PropertyId = property.PropertyId;
                 db.Properties.Add(property);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             ViewBag.PropertyId = new SelectList(db.Addresses, "AddressId", "AddressLine1", property.PropertyId);
