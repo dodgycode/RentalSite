@@ -1,9 +1,13 @@
 ﻿using RentalSite.Models;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
+using RentalSite.Helpers;
 
 namespace RentalSite.Controllers
 {
@@ -13,7 +17,7 @@ namespace RentalSite.Controllers
         /// Datacontext for PropertyListingModel
         /// </summary>
         private PropertyListingModel db = new PropertyListingModel();
-        
+
         // GET: Properties
         public ActionResult Index()
         {
@@ -39,8 +43,9 @@ namespace RentalSite.Controllers
         // GET: Properties/Create
         public ActionResult Create()
         {
-            Property newProperty = new Property();
-            return View(newProperty);
+            Property property = new Property();
+            
+            return View(property);
         }
 
         // POST: Properties/Create
@@ -48,23 +53,33 @@ namespace RentalSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PropertyId,Name, PropertyAddress, PropertyDetails")] Property property)
+        public  ActionResult Create([Bind(Include = "PropertyId,Name, PropertyAddress, PropertyDetails")] Property property)
         {
             if (ModelState.IsValid)
             {
                 property.PropertyId = Guid.NewGuid();
+                property.Active = true;
+
                 property.PropertyDetails.PropertyDetailsId = Guid.NewGuid();
                 property.PropertyDetails.PropertyId = property.PropertyId;
+
                 property.PropertyAddress.AddressId = Guid.NewGuid();
                 property.PropertyAddress.PropertyId = property.PropertyId;
+                
                 db.Properties.Add(property);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("AddImages", "Properties", property);
             }
 
-            ViewBag.PropertyId = new SelectList(db.Addresses, "AddressId", "AddressLine1", property.PropertyId);
-            ViewBag.PropertyId = new SelectList(db.Details, "PropertyDetailsId", "PropertyDetailsId", property.PropertyId);
             return View(property);
+        }
+
+        // GET: Properties/AddImages
+        public ActionResult AddImages(Property property)
+        {
+            ViewBag.PropertyId = property.PropertyId;
+            ViewBag.PropertyName = property.Name;
+            return View(ViewBag);
         }
 
         // GET: Properties/Edit/5

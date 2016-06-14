@@ -1,0 +1,28 @@
+﻿@model RentalSite.Models.PropertyImage
+
+@{
+    ViewBag.Title = "Add images for " + ViewBag.PropertyName;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/dropzone.js"></script>
+
+<h2>Add some photos to show off your property</h2>
+
+<div>
+    <p>
+        Please add some photos to show your future guests their holiday accommodation. Try to show key areas such as bedrooms, bathrooms and kitchen (if applicable).
+    </p>
+
+    <p>As with other aspects of your listing, you can always return to change your property photos later.</p>
+    <hr />
+    
+    <div class="jumbotron">
+        <form action="/file-upload"
+              class="dropzone"
+              id="my-awesome-dropzone"></form>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ImageId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

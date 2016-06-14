@@ -9,12 +9,14 @@ body {
     padding-top: 50px;
     padding-bottom: 20px;
     font-family:'Open Sans';
+    font-weight:400;
     background: url(/Images/tweed_@2X.png);
     background-color:#666666;
 }
 
 h1,h2,h3,h4,h5,h6 {
     font-family:'Abril Fatface';
+    font-weight:400;
     color:#d3e147;
 }
 

@@ -246,6 +246,10 @@
     <Compile Include="Migrations\201606141241003_g.Designer.cs">
       <DependentUpon>201606141241003_g.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606141403112_cdg.cs" />
+    <Compile Include="Migrations\201606141403112_cdg.Designer.cs">
+      <DependentUpon>201606141403112_cdg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -257,13 +261,16 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="favicon.ico" />
+    <Content Include="favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\400dpiLogo.png" />
     <Content Include="Images\400dpiLogoCropped.png" />
     <Content Include="Images\cream_dust_%402X.png" />
+    <Content Include="Images\ms-icon-310x310.png" />
     <Content Include="Images\SmallLogo.png" />
     <Content Include="Images\SmallLogoBW.png" />
     <Content Include="Images\tweed_%402X.png" />
@@ -273,6 +280,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\HarrogateHolidayLettings.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\dropzone.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -323,6 +331,7 @@
     <Content Include="Views\Properties\Details.cshtml" />
     <Content Include="Views\Properties\Edit.cshtml" />
     <Content Include="Views\Properties\Index.cshtml" />
+    <Content Include="Views\Properties\AddImages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -344,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606141241003_g.resx">
       <DependentUpon>201606141241003_g.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606141403112_cdg.resx">
+      <DependentUpon>201606141403112_cdg.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

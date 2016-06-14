@@ -2,7 +2,8 @@
 using Microsoft.WindowsAzure.Storage; // Namespace for CloudStorageAccount
 using Microsoft.WindowsAzure.Storage.Blob; // Namespace for Blob storage types
 using System;
-using System.IO;
+using System.Threading.Tasks;
+using System.Web;
 
 namespace RentalSite.Helpers
 {
@@ -25,16 +26,24 @@ namespace RentalSite.Helpers
         }
 
         /// <summary>
-        /// Uploads image to blob container. Returns blob reference.
+        /// Uploads image to blob container. Returns safe URL.
         /// </summary>
         /// <param name="filePath"></param>
-        /// <returns>Blob reference</returns>
-        public static string UploadBlob(string filePath)
+        /// <returns>Image URL</returns>
+        public async static Task<string> UploadPhotoAsync(HttpPostedFileBase photoToUpload)
         {
+            // Upload image to Blob Storage
             string blobRef = Guid.NewGuid().ToString();
-            CloudBlockBlob blob = _blobContainer.GetBlockBlobReference(blobRef);
-            blob.UploadFromFileAsync(filePath);
-            return blobRef;
+            CloudBlockBlob blockBlob = GetBlob(blobRef);
+            blockBlob.Properties.ContentType = photoToUpload.ContentType;
+            await blockBlob.UploadFromStreamAsync(photoToUpload.InputStream);
+
+            // Convert to be HTTP based URI (default storage path is HTTPS)
+            var uriBuilder = new UriBuilder(blockBlob.Uri);
+            uriBuilder.Scheme = "http";
+            string fullPath = uriBuilder.ToString();
+
+            return fullPath;
         }
 
         #endregion
@@ -53,9 +62,7 @@ namespace RentalSite.Helpers
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
             // Retrieve a reference to a container.
-            CloudBlobContainer container = blobClient.GetContainerReference("propertyimages");
-
-            _blobContainer = container;
+            _blobContainer = blobClient.GetContainerReference("propertyimages");
         }
         #endregion
     }
