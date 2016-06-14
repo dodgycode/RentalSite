@@ -225,9 +225,10 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\400dpiLogo.png" />
     <Content Include="Images\400dpiLogoCropped.png" />
+    <Content Include="Images\cream_dust_%402X.png" />
     <Content Include="Images\SmallLogo.png" />
     <Content Include="Images\SmallLogoBW.png" />
-    <Content Include="Images\vichy.png" />
+    <Content Include="Images\tweed_%402X.png" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootstrap.js" />

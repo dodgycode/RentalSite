@@ -1,22 +1,28 @@
 ﻿@import url(https://fonts.googleapis.com/css?family=Abril+Fatface|Open+Sans);
+
+/*purple = #5c003a
+grey = #666666
+black = black
+green = d3e147*/
+
 body {
     padding-top: 50px;
     padding-bottom: 20px;
     font-family:'Open Sans';
-    background: url(/Images/vichy.png);
-    background-color:cadetblue;
-    border-color:black;
+    background: url(/Images/tweed_@2X.png);
+    background-color:#666666;
 }
 
 h1,h2,h3,h4,h5,h6 {
     font-family:'Abril Fatface';
-    color:cadetblue;
+    color:#d3e147;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    background-image:url(/Images/cream_dust_@2X.png);
     background-color:white;
     border-bottom-left-radius:10px;
     border-bottom-right-radius:10px;
@@ -43,11 +49,11 @@ textarea {
 /* title */
 .navbar-default .navbar-brand {
     
-    color: cadetblue;
+    color: #d3e147;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-    color: #5E5E5E;
+    color: #5c003a;
 }
 /* link */
 .navbar-default .navbar-nav > li > a {
@@ -55,7 +61,7 @@ textarea {
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-    color: cadetblue;
+    color: #d3e147;
 }
 .navbar-default .navbar-nav > .active > a, 
 .navbar-default .navbar-nav > .active > a:hover, 
@@ -107,12 +113,18 @@ textarea {
 }
 
 .jumbotron {
-    background-color: cadetblue;
-    color: whitesmoke;
+    background-color: #5c003a;
+    color: #d3e147;
     opacity: 0.7;
 }
 
 .btn-default{
-    background-color: ThreeDDarkShadow;
-    color:whitesmoke;
+    background-color:#666666;
+    color:#d3e147;
+}
+
+.btn:hover,
+.btn:focus {
+    background-color:#d3e147;
+    color:#5c003a;
 }
