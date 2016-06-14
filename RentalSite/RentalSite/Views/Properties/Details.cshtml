@@ -1,11 +1,11 @@
 ﻿@model RentalSite.Models.Property
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.Name ;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>@ViewBag.Title</h2>
 
 <div>
     <h4>Property</h4>

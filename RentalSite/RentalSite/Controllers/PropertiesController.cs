@@ -9,8 +9,11 @@ namespace RentalSite.Controllers
 {
     public class PropertiesController : Controller
     {
+        /// <summary>
+        /// Datacontext for PropertyListingModel
+        /// </summary>
         private PropertyListingModel db = new PropertyListingModel();
-
+        
         // GET: Properties
         public ActionResult Index()
         {
@@ -37,8 +40,6 @@ namespace RentalSite.Controllers
         public ActionResult Create()
         {
             Property newProperty = new Property();
-            //ViewBag.PropertyId = new SelectList(db.Addresses, "AddressId", "AddressLine1");
-            //ViewBag.PropertyId = new SelectList(db.Details, "PropertyDetailsId", "PropertyDetailsId");
             return View(newProperty);
         }
 
