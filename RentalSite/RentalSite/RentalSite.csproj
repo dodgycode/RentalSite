@@ -280,8 +280,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\PropertyListing\Index.cshtml" />
-    <Content Include="Views\PropertyListing\Details.cshtml" />
     <Content Include="Views\Properties\Create.cshtml" />
     <Content Include="Views\Properties\Delete.cshtml" />
     <Content Include="Views\Properties\Details.cshtml" />
