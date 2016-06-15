@@ -273,6 +273,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <Content Include="Content\PropertyEdit.less" />
     <None Include="Properties\PublishProfiles\HarrogateHolidayLettings.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dropzone.js" />

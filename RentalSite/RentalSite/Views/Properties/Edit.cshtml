@@ -1,28 +1,42 @@
 ﻿@model RentalSite.Models.Property
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Work on your listing";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<head>
+    @Styles.Render("~/Content/dropzonescss")
+    @Styles.Render("~/content/PropertyEdit")
+</head>
+
+<h2>@ViewBag.Title</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Property</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.PropertyId)
 
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.PropertyId)
+
+    <div class="PropertyNameEdit">
         <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+            <div class="form-group">
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+            <div class="DescriptionText">
+                <p>
+                    Your property name is one of the first things a prospective guest will see
+                    when looking for accommodation in Harrogate.
+                </p>
+                <p>
+                    Because guests can browse properties by location
+                    there is no need to include the street address in your property name. Unless you believe
+                    the street name or area will help make your property stand out and attract more guests that is!
+                </p>
             </div>
         </div>
 

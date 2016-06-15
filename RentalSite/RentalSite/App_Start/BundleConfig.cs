@@ -34,9 +34,11 @@ namespace RentalSite
 
             bundles.Add(new StyleBundle("~/content/toastr").Include("~/Content/toastr.min.css")
                 .Include("~/Content/toastr.css"));
-
             bundles.Add(new ScriptBundle("~/bundles/toastr")
-                            .Include("~/Scripts/toastr.js"));
+                .Include("~/Scripts/toastr.js"));
+
+            bundles.Add(new StyleBundle("~/content/PropertyEdit")
+                .Include("~/Content/PropertyEdit.less"));
         }
     }
 }
