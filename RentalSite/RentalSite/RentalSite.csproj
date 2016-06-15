@@ -234,17 +234,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\AzureStorageHelper.cs" />
-    <Compile Include="Migrations\201606101949082_dg.cs" />
-    <Compile Include="Migrations\201606101949082_dg.Designer.cs">
-      <DependentUpon>201606101949082_dg.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606141231238_fdas.cs" />
-    <Compile Include="Migrations\201606141231238_fdas.Designer.cs">
-      <DependentUpon>201606141231238_fdas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606141241003_g.cs" />
-    <Compile Include="Migrations\201606141241003_g.Designer.cs">
-      <DependentUpon>201606141241003_g.cs</DependentUpon>
+    <Compile Include="Helpers\ControllerExtensions.cs" />
+    <Compile Include="Helpers\ToastrHelper.cs" />
+    <Compile Include="Migrations\201606150946298_Initial.cs" />
+    <Compile Include="Migrations\201606150946298_Initial.Designer.cs">
+      <DependentUpon>201606150946298_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -257,13 +251,19 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="favicon.ico" />
+    <Content Include="Content\dropzone.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
+    <Content Include="favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\400dpiLogo.png" />
     <Content Include="Images\400dpiLogoCropped.png" />
     <Content Include="Images\cream_dust_%402X.png" />
+    <Content Include="Images\ms-icon-310x310.png" />
     <Content Include="Images\SmallLogo.png" />
     <Content Include="Images\SmallLogoBW.png" />
     <Content Include="Images\tweed_%402X.png" />
@@ -271,8 +271,20 @@
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
+    <Content Include="Content\PropertyEdit.less" />
     <None Include="Properties\PublishProfiles\HarrogateHolidayLettings.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\dropzone.js" />
+    <Content Include="Scripts\dropzone\basic.css" />
+    <Content Include="Scripts\dropzone\basic.min.css" />
+    <Content Include="Scripts\dropzone\dropzone-amd-module.js" />
+    <Content Include="Scripts\dropzone\dropzone-amd-module.min.js" />
+    <Content Include="Scripts\dropzone\dropzone.css" />
+    <Content Include="Scripts\dropzone\dropzone.js" />
+    <Content Include="Scripts\dropzone\dropzone.min.css" />
+    <Content Include="Scripts\dropzone\dropzone.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -283,6 +295,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -323,6 +337,7 @@
     <Content Include="Views\Properties\Details.cshtml" />
     <Content Include="Views\Properties\Edit.cshtml" />
     <Content Include="Views\Properties\Index.cshtml" />
+    <Content Include="Views\Properties\AddImages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -336,14 +351,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606101949082_dg.resx">
-      <DependentUpon>201606101949082_dg.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606141231238_fdas.resx">
-      <DependentUpon>201606141231238_fdas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606141241003_g.resx">
-      <DependentUpon>201606141241003_g.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606150946298_Initial.resx">
+      <DependentUpon>201606150946298_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

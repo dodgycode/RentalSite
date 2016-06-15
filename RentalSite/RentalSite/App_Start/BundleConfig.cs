@@ -22,10 +22,23 @@ namespace RentalSite
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
-
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/dropzonescripts").Include(
+                     "~/Scripts/dropzone/dropzone.js"));
+            bundles.Add(new StyleBundle("~/Content/dropzonescss").Include(
+                     "~/Scripts/dropzone/css/basic.css",
+                     "~/Scripts/dropzone/css/dropzone.css"));
+
+            bundles.Add(new StyleBundle("~/content/toastr").Include("~/Content/toastr.min.css")
+                .Include("~/Content/toastr.css"));
+            bundles.Add(new ScriptBundle("~/bundles/toastr")
+                .Include("~/Scripts/toastr.js"));
+
+            bundles.Add(new StyleBundle("~/content/PropertyEdit")
+                .Include("~/Content/PropertyEdit.less"));
         }
     }
 }

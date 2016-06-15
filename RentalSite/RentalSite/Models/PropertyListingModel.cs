@@ -1,6 +1,7 @@
 namespace RentalSite.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity;
@@ -31,13 +32,13 @@ namespace RentalSite.Models
             modelBuilder.Entity<Property>().ToTable("Property");
             modelBuilder.Entity<Address>().ToTable("Address");
             modelBuilder.Entity<Details>().ToTable("PropertyDetails");
-            modelBuilder.Entity<PropertyImages>().ToTable("PropertyImages");
+            modelBuilder.Entity<PropertyImage>().ToTable("PropertyImages");
 
             //Set primary keys
             modelBuilder.Entity<Property>().HasKey(p => p.PropertyId);
             modelBuilder.Entity<Address>().HasKey(a => a.AddressId);
-            modelBuilder.Entity<Details>().HasKey(d => d.PropertyDetailsId);
-            modelBuilder.Entity<PropertyImages>().HasKey(i => i.ImageId);
+            modelBuilder.Entity<Details>().HasKey(d => d.DetailsId);
+            modelBuilder.Entity<PropertyImage>().HasKey(i => i.PropertyImageId);
 
             //Configure Property columns
             modelBuilder.Entity<Property>()
@@ -69,11 +70,11 @@ namespace RentalSite.Models
              .Property(p => p.Postcode)
              .HasMaxLength(10);
 
-            modelBuilder.Entity<PropertyImages>()
+            modelBuilder.Entity<PropertyImage>()
              .Property(p => p.Title)
              .HasMaxLength(150);
 
-            modelBuilder.Entity<PropertyImages>()
+            modelBuilder.Entity<PropertyImage>()
             .Property(p => p.Caption)
             .HasMaxLength(250);
 
@@ -81,14 +82,18 @@ namespace RentalSite.Models
             modelBuilder.Entity<Property>()
                 .HasOptional<Address>(p => p.PropertyAddress)
                 .WithRequired(ad => ad.CurrProperty);
-
+            
             modelBuilder.Entity<Property>()
                 .HasOptional<Details>(p => p.PropertyDetails)
                 .WithRequired(d => d.CurrProperty);
 
             modelBuilder.Entity<Property>()
-                .HasOptional<PropertyImages>(p => p.PropertyImages)
-                .WithRequired(i => i.CurrProperty);
+                .HasOptional<ICollection<PropertyImage>>(p => p.PropertyImages);
+
+            modelBuilder.Entity<PropertyImage>()
+                .HasRequired(p => p.CurrProperty)
+                .WithMany(i => i.PropertyImages)
+                .HasForeignKey(p => p.PropertyId);
         }
         #endregion
 
@@ -99,7 +104,7 @@ namespace RentalSite.Models
         public virtual DbSet<Property> Properties { get; set; }
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Details> Details { get; set; }
-        public virtual DbSet<PropertyImages> PropertyImages { get; set; }
+        public virtual DbSet<PropertyImage> PropertyImages { get; set; }
         #endregion
     }
 
@@ -114,7 +119,9 @@ namespace RentalSite.Models
         public string Name { get; set; }
         public virtual Details PropertyDetails { get; set; }
         public virtual Address PropertyAddress { get; set; }
-        public virtual PropertyImages PropertyImages { get; set; }
+        public virtual ICollection<PropertyImage> PropertyImages { get; set; }
+        public bool Active { get; set; }
+
     }
 
     /// <summary>
@@ -122,7 +129,7 @@ namespace RentalSite.Models
     /// </summary>
     public class Details
     {
-        public Guid PropertyDetailsId { get; set; }
+        public Guid DetailsId { get; set; }
         public Guid PropertyId { get; set; }
         [Display(Name = "Sleeps")]
         public int NumSleeps { get; set; }
@@ -158,15 +165,16 @@ namespace RentalSite.Models
     /// <summary>
     /// Property images. BlobRef links to Azure blob storage using AzureStorageHelper.
     /// </summary>
-    public class PropertyImages
+    public class PropertyImage
     {
-        public Guid ImageId { get; set; }
+        public Guid PropertyImageId { get; set; }
         public Guid PropertyId { get; set; }
         [Required]
-        public string BlobRef { get; set; }
+        public string ImageURL { get; set; }
         public string Title { get; set; }
         public string Caption { get; set; }
         public virtual Property CurrProperty { get; set; }
+        public bool Active { get; set; }
     }
     #endregion
 
