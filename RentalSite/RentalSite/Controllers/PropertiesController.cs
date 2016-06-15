@@ -44,7 +44,9 @@ namespace RentalSite.Controllers
         public ActionResult Create()
         {
             Property property = new Property();
-            
+            property.PropertyId = Guid.NewGuid();
+            property.Active = true;
+
             return View(property);
         }
 
@@ -53,35 +55,82 @@ namespace RentalSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public  ActionResult Create([Bind(Include = "PropertyId,Name, PropertyAddress, PropertyDetails")] Property property)
+        public async Task<ActionResult> Create([Bind(Include = "PropertyId, Name, PropertyAddress, PropertyDetails")] Property property)
         {
             if (ModelState.IsValid)
             {
-                property.PropertyId = Guid.NewGuid();
-                property.Active = true;
+                bool isSavedSuccessfully = false;
+                await Task.Run(() =>
+                    {
+                        property.PropertyDetails.DetailsId = Guid.NewGuid();
+                        property.PropertyDetails.PropertyId = property.PropertyId;
 
-                property.PropertyDetails.PropertyDetailsId = Guid.NewGuid();
-                property.PropertyDetails.PropertyId = property.PropertyId;
+                        property.PropertyAddress.AddressId = Guid.NewGuid();
+                        property.PropertyAddress.PropertyId = property.PropertyId;
 
-                property.PropertyAddress.AddressId = Guid.NewGuid();
-                property.PropertyAddress.PropertyId = property.PropertyId;
-                
-                db.Properties.Add(property);
-                db.SaveChanges();
-                return RedirectToAction("AddImages", "Properties", property);
+                        db.Properties.Add(property);
+                        db.SaveChanges();
+                        isSavedSuccessfully = true;
+                    });
+
+                if (isSavedSuccessfully)
+                {
+                    this.AddToastMessage("Saving property", "Property saved!", ToastrHelper.ToastType.Success);
+                    return new EmptyResult();
+                }
+                else
+                {
+                    this.AddToastMessage("Saving property", "Failed to save!", ToastrHelper.ToastType.Error);
+                    return Json(new { Message = "Error in saving details" });
+                }
+
+            }
+            this.AddToastMessage("Saving property", "Failed to save!", ToastrHelper.ToastType.Error);
+            return Json(new { Message = "Error in saving details" });
+        }
+
+        // POST: Save images async from dropzone
+        public async Task<ActionResult> SaveImage(Guid propertyId)
+        {
+            bool isSavedSuccessfully = true;
+            string fName = "";
+            try
+            {
+                foreach (string fileName in Request.Files)
+                {
+                    HttpPostedFileBase file = Request.Files[fileName];
+                    //Save file content goes here
+                    fName = file.FileName;
+                    PropertyImage newImage = new PropertyImage();
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        newImage.PropertyImageId = Guid.NewGuid();
+                        newImage.PropertyId = propertyId;
+                        newImage.ImageURL = await AzureStorageHelper.UploadPhotoAsync(file);
+                        db.PropertyImages.Add(newImage);
+                    }
+
+                }
+                //db.SaveChanges(); //don't save at this point until Property has been added (FKey)
+
+            }
+            catch (Exception ex)
+            {
+                isSavedSuccessfully = false;
+                AzureStorageHelper.DeletePhotos(db.PropertyImages);
             }
 
-            return View(property);
-        }
 
-        // GET: Properties/AddImages
-        public ActionResult AddImages(Property property)
-        {
-            ViewBag.PropertyId = property.PropertyId;
-            ViewBag.PropertyName = property.Name;
-            return View(ViewBag);
+            if (isSavedSuccessfully)
+            {
+                return Json(new { Message = fName });
+            }
+            else
+            {
+                return Json(new { Message = "Error in saving file" });
+            }
         }
-
+        
         // GET: Properties/Edit/5
         public ActionResult Edit(Guid? id)
         {

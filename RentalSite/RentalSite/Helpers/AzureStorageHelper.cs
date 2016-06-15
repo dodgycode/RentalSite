@@ -4,6 +4,8 @@ using Microsoft.WindowsAzure.Storage.Blob; // Namespace for Blob storage types
 using System;
 using System.Threading.Tasks;
 using System.Web;
+using RentalSite.Models;
+using System.Data.Entity;
 
 namespace RentalSite.Helpers
 {
@@ -14,17 +16,7 @@ namespace RentalSite.Helpers
         #endregion
 
         #region Shared methods
-        /// <summary>
-        /// Returns reference to blob when passed blob reference
-        /// </summary>
-        /// <param name="blobRef"></param>
-        /// <returns></returns>
-        public static CloudBlockBlob GetBlob(string blobRef)
-        {
-            if (_blobContainer == null) { GetBlobContainer(); }
-            return _blobContainer.GetBlockBlobReference(blobRef);
-        }
-
+     
         /// <summary>
         /// Uploads image to blob container. Returns safe URL.
         /// </summary>
@@ -40,15 +32,40 @@ namespace RentalSite.Helpers
 
             // Convert to be HTTP based URI (default storage path is HTTPS)
             var uriBuilder = new UriBuilder(blockBlob.Uri);
-            uriBuilder.Scheme = "http";
             string fullPath = uriBuilder.ToString();
 
             return fullPath;
         }
 
+        /// <summary>
+        /// If adding property fails, delete photos from storage
+        /// </summary>
+        /// <param name="propertyImages"></param>
+        internal static void DeletePhotos(DbSet<PropertyImage> propertyImages)
+        {
+            foreach (var img in propertyImages)
+            {
+                var url = img.ImageURL.Split('/');
+                string blobRef = url[url.Length - 1];
+
+                DeleteBlob(blobRef);
+            }
+        }
+
+
         #endregion
 
         #region Private methods
+        /// <summary>
+        /// Delete blob from Azure storage by blob reference
+        /// </summary>
+        /// <param name="blobRef"></param>
+        private static void DeleteBlob(string blobRef)
+        {
+            CloudBlockBlob currBlob = GetBlob(blobRef);
+            currBlob.DeleteIfExists();
+        }
+
         /// <summary>
         /// Finds the blob container for property images
         /// </summary>
@@ -63,6 +80,17 @@ namespace RentalSite.Helpers
 
             // Retrieve a reference to a container.
             _blobContainer = blobClient.GetContainerReference("propertyimages");
+        }
+
+        /// <summary>
+        /// Returns reference to blob when passed blob reference
+        /// </summary>
+        /// <param name="blobRef"></param>
+        /// <returns></returns>
+        private static CloudBlockBlob GetBlob(string blobRef)
+        {
+            if (_blobContainer == null) { GetBlobContainer(); }
+            return _blobContainer.GetBlockBlobReference(blobRef);
         }
         #endregion
     }

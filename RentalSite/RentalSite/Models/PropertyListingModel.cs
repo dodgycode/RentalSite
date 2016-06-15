@@ -37,8 +37,8 @@ namespace RentalSite.Models
             //Set primary keys
             modelBuilder.Entity<Property>().HasKey(p => p.PropertyId);
             modelBuilder.Entity<Address>().HasKey(a => a.AddressId);
-            modelBuilder.Entity<Details>().HasKey(d => d.PropertyDetailsId);
-            modelBuilder.Entity<PropertyImage>().HasKey(i => i.ImageId);
+            modelBuilder.Entity<Details>().HasKey(d => d.DetailsId);
+            modelBuilder.Entity<PropertyImage>().HasKey(i => i.PropertyImageId);
 
             //Configure Property columns
             modelBuilder.Entity<Property>()
@@ -82,14 +82,18 @@ namespace RentalSite.Models
             modelBuilder.Entity<Property>()
                 .HasOptional<Address>(p => p.PropertyAddress)
                 .WithRequired(ad => ad.CurrProperty);
-
+            
             modelBuilder.Entity<Property>()
                 .HasOptional<Details>(p => p.PropertyDetails)
                 .WithRequired(d => d.CurrProperty);
 
+            modelBuilder.Entity<Property>()
+                .HasOptional<ICollection<PropertyImage>>(p => p.PropertyImages);
+
             modelBuilder.Entity<PropertyImage>()
-                .HasRequired<Property>(i => i.CurrProperty)
-                .WithMany(p => p.PropertyImages);
+                .HasRequired(p => p.CurrProperty)
+                .WithMany(i => i.PropertyImages)
+                .HasForeignKey(p => p.PropertyId);
         }
         #endregion
 
@@ -125,7 +129,7 @@ namespace RentalSite.Models
     /// </summary>
     public class Details
     {
-        public Guid PropertyDetailsId { get; set; }
+        public Guid DetailsId { get; set; }
         public Guid PropertyId { get; set; }
         [Display(Name = "Sleeps")]
         public int NumSleeps { get; set; }
@@ -163,7 +167,7 @@ namespace RentalSite.Models
     /// </summary>
     public class PropertyImage
     {
-        public Guid ImageId { get; set; }
+        public Guid PropertyImageId { get; set; }
         public Guid PropertyId { get; set; }
         [Required]
         public string ImageURL { get; set; }

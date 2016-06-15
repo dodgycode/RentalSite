@@ -3,7 +3,7 @@ namespace RentalSite.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class dg : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -30,6 +30,7 @@ namespace RentalSite.Migrations
                     {
                         PropertyId = c.Guid(nullable: false),
                         Name = c.String(maxLength: 80),
+                        Active = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.PropertyId);
             
@@ -37,25 +38,43 @@ namespace RentalSite.Migrations
                 "Admin.PropertyDetails",
                 c => new
                     {
-                        PropertyDetailsId = c.Guid(nullable: false),
+                        DetailsId = c.Guid(nullable: false),
                         PropertyId = c.Guid(nullable: false),
                         NumSleeps = c.Int(nullable: false),
                         NumBedrooms = c.Int(nullable: false),
                         NumBathrooms = c.Int(nullable: false),
                         Parking = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.PropertyDetailsId)
-                .ForeignKey("Admin.Property", t => t.PropertyDetailsId)
-                .Index(t => t.PropertyDetailsId);
+                .PrimaryKey(t => t.DetailsId)
+                .ForeignKey("Admin.Property", t => t.DetailsId)
+                .Index(t => t.DetailsId);
+            
+            CreateTable(
+                "Admin.PropertyImages",
+                c => new
+                    {
+                        PropertyImageId = c.Guid(nullable: false),
+                        PropertyId = c.Guid(nullable: false),
+                        ImageURL = c.String(nullable: false),
+                        Title = c.String(maxLength: 150),
+                        Caption = c.String(maxLength: 250),
+                        Active = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.PropertyImageId)
+                .ForeignKey("Admin.Property", t => t.PropertyId, cascadeDelete: true)
+                .Index(t => t.PropertyId);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("Admin.PropertyDetails", "PropertyDetailsId", "Admin.Property");
+            DropForeignKey("Admin.PropertyImages", "PropertyId", "Admin.Property");
+            DropForeignKey("Admin.PropertyDetails", "DetailsId", "Admin.Property");
             DropForeignKey("Admin.Address", "AddressId", "Admin.Property");
-            DropIndex("Admin.PropertyDetails", new[] { "PropertyDetailsId" });
+            DropIndex("Admin.PropertyImages", new[] { "PropertyId" });
+            DropIndex("Admin.PropertyDetails", new[] { "DetailsId" });
             DropIndex("Admin.Address", new[] { "AddressId" });
+            DropTable("Admin.PropertyImages");
             DropTable("Admin.PropertyDetails");
             DropTable("Admin.Property");
             DropTable("Admin.Address");

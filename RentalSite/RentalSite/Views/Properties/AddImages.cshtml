@@ -1,7 +1,7 @@
-﻿@model RentalSite.Models.PropertyImage
+﻿@model RentalSite.Models.Property
 
 @{
-    ViewBag.Title = "Add images for " + ViewBag.PropertyName;
+    ViewBag.Title = "Add images for " + Model.PropertyName;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script src="~/Scripts/dropzone.js"></script>
