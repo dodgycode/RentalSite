@@ -1,6 +1,48 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Why book with us?";
 }
-<h2>About Harrogate Holiday Lettings</h2>
+<h2>@ViewBag.Title</h2>
 
-<p>Our flats are good.</p>
+<div class="row">
+    <div class="col-md-5 info-bubble">
+        <h3>Advantages over a hotel room</h3>
+        <ul>
+            <li><b>Better value</b> - Holiday apartments often cost less per head than a hotel room</li>
+            <li><b>More space</b> - All apartments are more spacious than any hotel room </li>
+            <li><b>Better character</b> - Harrogate Holiday Apartments are finished to a high standard in style and luxury</li>
+        </ul>
+    </div>
+
+    <div class="col-md-5 info-bubble">
+        <h3>Standard in all properties</h3>
+        <ul>
+            <li>Fully equiped kitchens for self catering</li>
+            <li>Dining area that can double as work space for business travellers</li>
+            <li>Free wifi and cable TV</li>
+            <li>Travel cot and high chair on request</li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-5 info-bubble">
+        <h3>How we serve you</h3>
+        <p>We provide a bespoke booking service specializing in the provision of luxury self catering accommodation
+    for business and leisure guests in the historic spa town of Harrogate in North Yorkshire.</p>
+        <p>We personally inspect and manage our entire portfolio so you can be guaranteed a high standard.</p>
+        <p>All properties will be fully serviced before your arrival with high quality Egyptian cotton bedding and fluffy towels provided. </p>
+        <p>Check in days are flexible and we can offer early arrival and late departure.</p>
+    </div>
+    <div class="col-md-5" style="border:dashed #5c003a 3px; border-radius:15px; margin:10px;">
+       <h3>Next steps</h3>
+
+        <input type="button" class="btn btn-default" value="View our properties!"
+               onclick="location.href='@Url.Action("Index", "Properties")'" style="display:block; margin:10px;"/>
+
+        <input type="button" class="btn btn-default" value="Get in touch"
+               onclick="location.href='@Url.Action("Contact", "Home")'" style="display:block;  margin:10px;" />
+
+        <input type="button" class="btn btn-default" value="List your property with us"
+               onclick="location.href='@Url.Action("Create", "Properties")'" style="display:block;  margin:10px;"/>
+    </div>
+</div>
