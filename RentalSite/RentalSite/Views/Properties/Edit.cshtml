@@ -40,6 +40,19 @@
             </div>
         </div>
 
+        @*Display after submit button is pressed@**@
+        <div class="jumbotron col-md-6" id="ImageBox">
+            <h3>Please add some pictures to showcase your property to prospective guests</h3>
+            <form action="~/Properties/SaveImage" method="post"
+                  enctype="multipart/form-data" class="dropzone" id="dropzoneForm">
+                @Html.HiddenFor(Model => Model.PropertyId)
+                <div class="fallback">
+                    <input name="file" type="file" multiple />
+                    <input type="submit" value="Upload" />
+                </div>
+            </form>
+        </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />

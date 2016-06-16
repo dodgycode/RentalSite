@@ -240,6 +240,10 @@
     <Compile Include="Migrations\201606150946298_Initial.Designer.cs">
       <DependentUpon>201606150946298_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606161035266_madeNameRequired.cs" />
+    <Compile Include="Migrations\201606161035266_madeNameRequired.Designer.cs">
+      <DependentUpon>201606161035266_madeNameRequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -353,6 +357,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201606150946298_Initial.resx">
       <DependentUpon>201606150946298_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606161035266_madeNameRequired.resx">
+      <DependentUpon>201606161035266_madeNameRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

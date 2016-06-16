@@ -1,0 +1,46 @@
+﻿@model IEnumerable<RentalSite.Models.Property>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Properties</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyAddress.AddressLine1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyDetails.PropertyDetailsId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PropertyId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PropertyId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PropertyId })
+        </td>
+    </tr>
+}
+
+</table>
