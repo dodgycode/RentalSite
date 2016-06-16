@@ -39,6 +39,12 @@ namespace RentalSite
 
             bundles.Add(new StyleBundle("~/content/PropertyEdit")
                 .Include("~/Content/PropertyEdit.less"));
+
+            bundles.Add(new StyleBundle("~/content/simple-slideshow-styles")
+                .Include("~/content/simple-slideshow-styles.css"));
+            bundles.Add(new ScriptBundle("~/scripts/better-simple-slideshow")
+                .Include("~/Scripts/better-simple-slideshow.js")
+                .Include("~/Scripts/hammer.js"));
         }
     }
 }

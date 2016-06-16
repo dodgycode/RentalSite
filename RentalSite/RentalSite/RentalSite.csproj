@@ -256,6 +256,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\dropzone.css" />
+    <Content Include="Content\simple-slideshow-styles.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico">
@@ -266,6 +267,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\400dpiLogo.png" />
     <Content Include="Images\400dpiLogoCropped.png" />
+    <Content Include="Images\arrows-alt_ffffff_64.png" />
+    <Content Include="Images\compress_ffffff_64.png" />
     <Content Include="Images\cream_dust_%402X.png" />
     <Content Include="Images\ms-icon-310x310.png" />
     <Content Include="Images\SmallLogo.png" />
@@ -273,6 +276,7 @@
     <Content Include="Images\tweed_%402X.png" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="Scripts\better-simple-slideshow.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\toastr.scss" />
@@ -289,6 +293,7 @@
     <Content Include="Scripts\dropzone\dropzone.js" />
     <Content Include="Scripts\dropzone\dropzone.min.css" />
     <Content Include="Scripts\dropzone\dropzone.min.js" />
+    <Content Include="Scripts\hammer.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
