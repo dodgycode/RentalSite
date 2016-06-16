@@ -1,46 +1,33 @@
 ﻿@model IEnumerable<RentalSite.Models.Property>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Choose your accommodation";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<head>
+    @Styles.Render("~/content/PropertyEdit")
+</head>
 
-<h2>Properties</h2>
+<h2>@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.PropertyAddress.AddressLine1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PropertyDetails.PropertyDetailsId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
+@foreach (var item in Model)
+{
+    <div class="row PropertyListItem">
+        <div class="col-md-4">
+            <a href="@Url.Action("Details", "Properties", new { @id = item.PropertyId })">
+                <img src="~/Images/ms-icon-310x310.png" width="250" class="PropertyListItem.img" />
+            </a>
+        </div>
+        <div class="col-md-8">
+            @Html.ActionLink(item.Name, "Details", "Properties", new { @id = item.PropertyId }, new { @class = "h3" })
+            <div><b>Sleeps:</b> @Html.DisplayFor(modelItem => item.PropertyDetails.NumSleeps)</div>
+            <div>Starting from <b>£130</b> per night!</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PropertyId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PropertyId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PropertyId })
-        </td>
-    </tr>
+            <input type="button" class="btn btn-default" value="Find out more!"
+                   onclick="location.href='@Url.Action("Details", "Properties", new { @id = item.PropertyId })'">
+        </div>
+
+    </div>
 }
 
-</table>
+

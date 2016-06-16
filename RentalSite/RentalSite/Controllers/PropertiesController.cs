@@ -1,13 +1,12 @@
-﻿using RentalSite.Models;
+﻿using RentalSite.Helpers;
+using RentalSite.Models;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using RentalSite.Helpers;
 
 namespace RentalSite.Controllers
 {
@@ -21,7 +20,10 @@ namespace RentalSite.Controllers
         // GET: Properties
         public ActionResult Index()
         {
-            var properties = db.Properties.Include(p => p.PropertyAddress).Include(p => p.PropertyDetails);
+            var properties = db.Properties
+                .Include(p => p.PropertyAddress)
+                .Include(p => p.PropertyDetails)
+                .Include(p=>p.PropertyImages);
             return View(properties.ToList());
         }
 
@@ -76,7 +78,7 @@ namespace RentalSite.Controllers
                 if (isSavedSuccessfully)
                 {
                     this.AddToastMessage("Saving property", "Property saved!", ToastrHelper.ToastType.Success);
-                    return new EmptyResult();
+                    return Json(new { Message = "Property saved! Later I'll re-direct to a page to further edit the property"});
                 }
                 else
                 {

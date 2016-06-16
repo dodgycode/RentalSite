@@ -43,6 +43,7 @@ namespace RentalSite.Models
             //Configure Property columns
             modelBuilder.Entity<Property>()
                 .Property(p => p.Name)
+                .IsRequired()
                 .HasMaxLength(80);
 
             //Configure Address columns
