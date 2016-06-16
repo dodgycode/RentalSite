@@ -1,13 +1,32 @@
 ﻿@model RentalSite.Models.Property
 
 @{
-    ViewBag.Title = Model.Name ;
+    ViewBag.Title = Model.Name;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@Styles.Render("~/content/simple-slideshow-styles")
 
 <h2>@ViewBag.Title</h2>
 
 <div>
+
+    @*Slideshow stuff*@
+    <div class="bss-slides">
+        @if (Model.PropertyImages != null)
+        {
+            foreach (var image in Model.PropertyImages)
+            {
+                <figure>
+                    <img src=@image.ImageURL width="100%"  />
+                    <figcaption><b>@image.Title</b> - @image.Caption</figcaption>
+                </figure>
+                //Script below to populate slideshow
+            }
+        }
+    </div>
+
+
+
     <h4>Property</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -20,11 +39,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PropertyDetails.PropertyDetailsId)
+            @Html.DisplayNameFor(model => model.PropertyDetails.DetailsId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PropertyDetails.PropertyDetailsId)
+            @Html.DisplayFor(model => model.PropertyDetails.DetailsId)
         </dd>
 
         <dt>
@@ -41,3 +60,21 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.PropertyId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+@Scripts.Render("~/scripts/better-simple-slideshow")
+<script>
+    var opts = {
+        //auto-advancing slides? accepts boolean (true/false) or object
+        auto: {
+            // speed to advance slides at. accepts number of milliseconds
+            speed: 3500,
+            // pause advancing on mouseover? accepts boolean
+            pauseOnHover: true
+        },
+        // show fullscreen toggle? accepts boolean
+        fullScreen: true,
+        // support swiping on touch devices? accepts boolean, requires hammer.js
+        swipe: true
+    }
+    makeBSS('.bss-slides', opts)
+</script>
