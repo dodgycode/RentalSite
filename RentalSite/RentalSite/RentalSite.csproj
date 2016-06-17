@@ -236,13 +236,9 @@
     <Compile Include="Helpers\AzureStorageHelper.cs" />
     <Compile Include="Helpers\ControllerExtensions.cs" />
     <Compile Include="Helpers\ToastrHelper.cs" />
-    <Compile Include="Migrations\201606150946298_Initial.cs" />
-    <Compile Include="Migrations\201606150946298_Initial.Designer.cs">
-      <DependentUpon>201606150946298_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606161035266_madeNameRequired.cs" />
-    <Compile Include="Migrations\201606161035266_madeNameRequired.Designer.cs">
-      <DependentUpon>201606161035266_madeNameRequired.cs</DependentUpon>
+    <Compile Include="Migrations\201606171007473_initial.cs" />
+    <Compile Include="Migrations\201606171007473_initial.Designer.cs">
+      <DependentUpon>201606171007473_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -368,11 +364,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606150946298_Initial.resx">
-      <DependentUpon>201606150946298_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606161035266_madeNameRequired.resx">
-      <DependentUpon>201606161035266_madeNameRequired.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606171007473_initial.resx">
+      <DependentUpon>201606171007473_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

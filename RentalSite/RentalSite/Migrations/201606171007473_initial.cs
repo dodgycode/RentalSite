@@ -3,7 +3,7 @@ namespace RentalSite.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -29,7 +29,7 @@ namespace RentalSite.Migrations
                 c => new
                     {
                         PropertyId = c.Guid(nullable: false),
-                        Name = c.String(maxLength: 80),
+                        Name = c.String(nullable: false, maxLength: 80),
                         Active = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.PropertyId);

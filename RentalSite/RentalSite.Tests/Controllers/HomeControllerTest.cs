@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RentalSite;
 using RentalSite.Controllers;
+using System.Data.SqlClient;
 
 namespace RentalSite.Tests.Controllers
 {
@@ -49,6 +50,29 @@ namespace RentalSite.Tests.Controllers
 
             // Assert
             Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void makeAccountDB()
+        {
+            SqlConnection connection = new SqlConnection(@"server=(localdb)\MSSQLLocalDB;Integrated Security=True;");
+            using (connection)
+            {
+                connection.Open();
+
+                string sql = string.Format(@"
+        CREATE DATABASE
+            [HHLSQL]
+        ON PRIMARY (
+           NAME=HHLSQL_data ,
+           FILENAME = '{0}\HHLSQL.mdf'
+        )",
+                  @"C:\Users\owen.pyrah\Source\Repos\RentalSite\RentalSite\RentalSite\TestDb"
+                );
+
+                SqlCommand command = new SqlCommand(sql, connection);
+                command.ExecuteNonQuery();
+            }
         }
     }
 }
