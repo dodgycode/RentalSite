@@ -108,7 +108,7 @@
   }
   .navbar {
       margin-bottom: 0;
-      background-color: #666666;
+      background-color: whitesmoke;
       z-index: 9999;
       border: 0;
       font-size: 12px !important;
@@ -117,11 +117,12 @@
       border-radius: 0;
   }
   .navbar li a, .navbar .navbar-brand {
-      color: #d3e147 !important;
+      color: #5c003a !important;
   }
+
   .navbar-nav li a:hover, .navbar-nav li.active a {
       color: #5c003a !important;
-      background-color: #fff !important;
+      background-color: #d3e147 !important;
   }
   .navbar-default .navbar-toggle {
       border-color: transparent;
