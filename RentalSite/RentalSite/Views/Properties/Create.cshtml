@@ -21,93 +21,7 @@
             @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
         </div>
     </div>
-
-    <div id="DetailsControls">
-        <fieldset class="col-md-6">
-            <h4>Address</h4>
-            <div class="form-group">
-                @Html.LabelFor(model => model.PropertyAddress.AddressLine1, htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.PropertyAddress.AddressLine1, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PropertyAddress.AddressLine1, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PropertyAddress.AddressLine2, htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.PropertyAddress.AddressLine2, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PropertyAddress.AddressLine2, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PropertyAddress.AddressLine3, htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.PropertyAddress.AddressLine3, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PropertyAddress.AddressLine3, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PropertyAddress.AddressLine4, htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.PropertyAddress.AddressLine4, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PropertyAddress.AddressLine4, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PropertyAddress.AddressLine5, htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.PropertyAddress.AddressLine5, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PropertyAddress.AddressLine5, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PropertyAddress.Postcode, htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.PropertyAddress.Postcode, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PropertyAddress.Postcode, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-        </fieldset>
-
-        <fieldset class="col-md-6">
-            <h4>Details</h4>
-            <div class="form-group">
-                @Html.LabelFor(model => model.PropertyDetails.NumSleeps, htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.PropertyDetails.NumSleeps, new { htmlAttributes = new { @class = "form-control", @placeholder = "Including sofa beds" } })
-                    @Html.ValidationMessageFor(model => model.PropertyDetails.NumSleeps, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PropertyDetails.NumBedrooms, htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.PropertyDetails.NumBedrooms, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PropertyDetails.NumBedrooms, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PropertyDetails.NumBathrooms, htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.PropertyDetails.NumBathrooms, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PropertyDetails.NumBathrooms, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PropertyDetails.Parking, htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EnumDropDownListFor(model => model.PropertyDetails.Parking, new { htmlAttributes = new { @class = "form-control" } })
-                </div>
-            </div>
-
+    
             <div class="form-group">
                 <div>
                     <button type="submit" class="btn btn-default">
@@ -115,8 +29,8 @@
                     </button>
                 </div>
             </div>
-        </fieldset>
-    </div>
+       
+
 }
 
 
@@ -131,12 +45,12 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     @*<script>
-        $(document).ready(function () {
-            $("#button").click(function () {
-                $("#ImageBox").slideDown(1000);
-                $("#SubmitButton").fadeOut(1000);
+            $(document).ready(function () {
+                $("#button").click(function () {
+                    $("#ImageBox").slideDown(1000);
+                    $("#SubmitButton").fadeOut(1000);
+                });
             });
-        });
-    </script>*@
+        </script>*@
 
 }

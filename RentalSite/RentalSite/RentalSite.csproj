@@ -252,6 +252,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\dropzone.css" />
+    <Content Include="Content\GuestHomeStyle.css" />
     <Content Include="Content\simple-slideshow-styles.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
@@ -263,6 +264,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\400dpiLogo.png" />
     <Content Include="Images\400dpiLogoCropped.png" />
+    <Content Include="Images\400dpiLogoCroppedBW.png" />
     <Content Include="Images\arrows-alt_ffffff_64.png" />
     <Content Include="Images\compress_ffffff_64.png" />
     <Content Include="Images\cream_dust_%402X.png" />
@@ -351,6 +353,7 @@
     <Content Include="ConnectionStrings.Release.config">
       <DependentUpon>ConnectionStrings.config</DependentUpon>
     </Content>
+    <Content Include="Views\Properties\PropertyEditor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

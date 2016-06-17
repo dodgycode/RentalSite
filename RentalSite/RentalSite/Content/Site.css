@@ -22,8 +22,8 @@ h1,h2,h3,h4,h5,h6 {
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
     background-image:url(/Images/cream_dust_@2X.png);
     background-color:white;
     border-bottom-left-radius:10px;
@@ -47,7 +47,7 @@ textarea {
 
 /* navbar */
 .navbar-default {
-    background-color:whitesmoke;
+    background-color:#d3e147;
 }
 /* title */
 .navbar-default .navbar-brand {
@@ -96,14 +96,14 @@ textarea {
 }
 /* mobile version */
 .navbar-default .navbar-toggle {
-    border-color: #DDD;
+    border-color: #5c003a;
 }
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-    background-color: #DDD;
+    background-color: #5c003a;
 }
 .navbar-default .navbar-toggle .icon-bar {
-    background-color: #CCC;
+    background-color: #d3e147;
 }
 @media (max-width: 767px) {
     .navbar-default .navbar-nav .open .dropdown-menu > li > a {
@@ -118,7 +118,6 @@ textarea {
 .jumbotron {
     background-color: #5c003a;
     color: #d3e147;
-    opacity: 0.7;
 }
 
 .container .jumbotron{

@@ -57,18 +57,18 @@ namespace RentalSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "PropertyId, Name, PropertyAddress, PropertyDetails")] Property property)
+        public async Task<ActionResult> Create([Bind(Include = "PropertyId, Name")] Property property)
         {
             if (ModelState.IsValid)
             {
                 bool isSavedSuccessfully = false;
                 await Task.Run(() =>
                     {
-                        property.PropertyDetails.DetailsId = Guid.NewGuid();
-                        property.PropertyDetails.PropertyId = property.PropertyId;
+                        //property.PropertyDetails.DetailsId = Guid.NewGuid();
+                        //property.PropertyDetails.PropertyId = property.PropertyId;
 
-                        property.PropertyAddress.AddressId = Guid.NewGuid();
-                        property.PropertyAddress.PropertyId = property.PropertyId;
+                        //property.PropertyAddress.AddressId = Guid.NewGuid();
+                        //property.PropertyAddress.PropertyId = property.PropertyId;
 
                         db.Properties.Add(property);
                         db.SaveChanges();
@@ -77,19 +77,35 @@ namespace RentalSite.Controllers
 
                 if (isSavedSuccessfully)
                 {
-                    this.AddToastMessage("Saving property", "Property saved!", ToastrHelper.ToastType.Success);
-                    return Json(new { Message = "Property saved! Later I'll re-direct to a page to further edit the property"});
+                  return  RedirectToAction("PropertyEditor",new { id = property.PropertyId});
                 }
                 else
                 {
-                    this.AddToastMessage("Saving property", "Failed to save!", ToastrHelper.ToastType.Error);
-                    return Json(new { Message = "Error in saving details" });
+                    throw new HttpException("There was a problem saving this property");
                 }
-
             }
-            this.AddToastMessage("Saving property", "Failed to save!", ToastrHelper.ToastType.Error);
-            return Json(new { Message = "Error in saving details" });
+            throw new HttpException("There was a problem saving this property");
         }
+
+        // GET: Properties/PropertyEditor/5
+        public ActionResult PropertyEditor(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Property property = db.Properties.Find(id);
+            if (property == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.PropertyId = new SelectList(db.Addresses, "AddressId", "AddressLine1", property.PropertyId);
+            ViewBag.PropertyId = new SelectList(db.Details, "PropertyDetailsId", "PropertyDetailsId", property.PropertyId);
+            ViewBag.PropertyId = new SelectList(db.PropertyImages, "PropertyImageId", "PropertyImageId", property.PropertyId);
+
+            return View(property);
+        }
+
 
         // POST: Save images async from dropzone
         public async Task<ActionResult> SaveImage(Guid propertyId)
@@ -113,8 +129,7 @@ namespace RentalSite.Controllers
                     }
 
                 }
-                //db.SaveChanges(); //don't save at this point until Property has been added (FKey)
-
+                db.SaveChanges(); 
             }
             catch (Exception ex)
             {
