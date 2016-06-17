@@ -282,6 +282,13 @@
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
     <Content Include="Content\PropertyEdit.less" />
+    <Content Include="PrivateSettings.config" />
+    <Content Include="PrivateSettings.Debug.config">
+      <DependentUpon>PrivateSettings.config</DependentUpon>
+    </Content>
+    <Content Include="PrivateSettings.Release.config">
+      <DependentUpon>PrivateSettings.config</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\HarrogateHolidayLettings.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dropzone.js" />
@@ -347,6 +354,13 @@
     <Content Include="Views\Properties\Edit.cshtml" />
     <Content Include="Views\Properties\Index.cshtml" />
     <Content Include="Views\Properties\AddImages.cshtml" />
+    <Content Include="ConnectionStrings.config" />
+    <Content Include="ConnectionStrings.Debug.config">
+      <DependentUpon>ConnectionStrings.config</DependentUpon>
+    </Content>
+    <Content Include="ConnectionStrings.Release.config">
+      <DependentUpon>ConnectionStrings.config</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
