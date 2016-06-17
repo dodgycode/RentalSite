@@ -121,6 +121,11 @@ textarea {
     opacity: 0.7;
 }
 
+.container .jumbotron{
+    border-radius:10px;
+    box-shadow: 2px 2px 8px black;
+}
+
 .btn-default{
     background-color:#666666;
     color:#d3e147;
