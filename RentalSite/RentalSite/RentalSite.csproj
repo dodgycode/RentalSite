@@ -340,6 +340,7 @@
     <Content Include="Views\Properties\Index.cshtml" />
     <Content Include="Views\Properties\AddImages.cshtml" />
     <Content Include="Views\Properties\PropertyEditor.cshtml" />
+    <Content Include="Views\Shared\_StartLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

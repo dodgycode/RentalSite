@@ -62,12 +62,35 @@ namespace RentalSite.Tests.Controllers
 
                 string sql = string.Format(@"
         CREATE DATABASE
+            [Accounts]
+        ON PRIMARY (
+           NAME=Accounts_data ,
+           FILENAME = '{0}\Accounts.mdf'
+        )",
+                  @"D:\SkyDrive\GAME SAVES\SourceCode\RentalSite\RentalSite\RentalSite\TestDb"
+                );
+
+                SqlCommand command = new SqlCommand(sql, connection);
+                command.ExecuteNonQuery();
+            }
+        }
+
+        [TestMethod]
+        public void makeHHLSQLDB()
+        {
+            SqlConnection connection = new SqlConnection(@"server=(localdb)\MSSQLLocalDB;Integrated Security=True;");
+            using (connection)
+            {
+                connection.Open();
+
+                string sql = string.Format(@"
+        CREATE DATABASE
             [HHLSQL]
         ON PRIMARY (
            NAME=HHLSQL_data ,
            FILENAME = '{0}\HHLSQL.mdf'
         )",
-                  @"C:\Users\owen.pyrah\Source\Repos\RentalSite\RentalSite\RentalSite\TestDb"
+                  @"D:\SkyDrive\GAME SAVES\SourceCode\RentalSite\RentalSite\RentalSite\TestDb"
                 );
 
                 SqlCommand command = new SqlCommand(sql, connection);
