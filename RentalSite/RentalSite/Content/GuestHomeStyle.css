@@ -26,9 +26,35 @@
       padding: 60px 0px;
   }
   .bg-grey {
+      background-color: lightgray;
+      color:#666666;
+  }
+  .bg-grey h1,
+  .bg-grey h2,
+  .bg-grey h3,
+  .bg-grey h4,
+  .bg-grey h5{
+      color:#5c003a;
+  }
+
+   .bg-purple {
       background-color: #5c003a;
       color:whitesmoke;
   }
+
+     .bg-green {
+      background-color: #d3e147;
+      color:#666666;
+  }
+
+      .bg-green h1,
+  .bg-green h2,
+  .bg-green h3,
+  .bg-green h4,
+  .bg-green h5{
+      color:#5c003a;
+  }
+
   .logo-small {
       color: whitesmoke;
       font-size: 50px;
@@ -128,6 +154,15 @@
       border-color: transparent;
       color: #fff !important;
   }
+
+  .navbar-notfixed-top,
+.navbar-notfixed-bottom {
+  position: fixed;
+  right: 0;
+  left: 0;
+  border-width: 0 0 1px;
+}
+
   footer .glyphicon {
       font-size: 20px;
       margin-bottom: 20px;

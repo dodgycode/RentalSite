@@ -6,60 +6,117 @@
 }
 @Styles.Render("~/content/simple-slideshow-styles")
 
-<h2>@ViewBag.Title</h2>
 
-<div>
 
-    @*Slideshow stuff*@
-    <div class="bss-slides">
-        @if (Model.PropertyImages != null)
-        {
-            foreach (var image in Model.PropertyImages)
+
+
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+    <!-- The navbar - The <a> elements are used to jump to a section in the scrollable area -->
+    <nav class="navbar navbar-default">
+        <ul class="nav navbar-nav">
+            <li><a href="#photos">PHOTOS</a></li>
+            <li><a href="#summary">SUMMARY</a></li>
+            <li><a href="#description">DESCRIPTION</a></li>
+            <li><a href="#prices">PRICES</a></li>
+        </ul>
+    </nav>
+
+    <h2>@ViewBag.Title</h2>
+
+    <div>
+        @*Slideshow stuff*@
+        <div class="bss-slides" id="photos">
+            @if (Model.PropertyImages != null)
             {
-                <figure>
-                    <img src=@image.ImageURL width="100%"  />
-                    <figcaption><b>@image.Title</b> - @image.Caption</figcaption>
-                </figure>
-                //Script below to populate slideshow
+                foreach (var image in Model.PropertyImages)
+                {
+                    <figure>
+                        <img src=@image.ImageURL width="100%" />
+                        <figcaption><b>@image.Title</b> - @image.Caption</figcaption>
+                    </figure>
+                    //Script below to populate slideshow
+                }
             }
-        }
+        </div>
+
+        @* Summary *@
+        <div class="container-fluid text-center bg-green" id="summary">
+            <h2>SUMMARY</h2>
+
+            <dl class="dl-horizontal">
+                <dt>
+                   Starting from 
+                </dt>
+
+                <dd>
+                   £140 per night
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PropertyDetails.NumSleeps)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PropertyDetails.NumSleeps)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PropertyDetails.NumBedrooms)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PropertyDetails.NumBedrooms)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PropertyDetails.NumBathrooms)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PropertyDetails.NumBathrooms)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PropertyDetails.Parking)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PropertyDetails.Parking)
+                </dd>
+            </dl>
+        </div>
+
+        @* Description*@
+        <div class="container-fluid text-center bg-grey" id="description">
+            <h2>DESCRIPTION</h2>
+            <p>Harrogate centre apartment opposite the Harrogate International Conference Centre. This luxurious and high specification duplex apartment has 3 super-king spacious bedrooms, all with en-suite bathrooms and comfortably sleeps 6 and suits both business and leisure guests being so close to the Spa town's attractions and the business quarter. All the super king beds can be split into twins giving more flexibility. In addition there is a double sofa bed in the lounge to accommodate an additional 2 guests, making 8 in total.
+
+We are happy to welcome either business or leisure guests. We are flexible on 'changeover days' and lengths of stay, realising that Harrogate makes an ideal venue for a long weekend break, or with the accessibility of the conference centre a popular business venue midweek. We are also happy to take longer term bookings and can offer special rates for these if you contact us. Ideal for relocations and in between house moves.
+
+All stays will be provided with a welcome pack of tea, coffee, sugar and we also provide supplies of washing up liquid, dishwasher tabs, washing detergent, kitchen roll and toiletries in the bathrooms to get you started.
+
+Accommodation
+
+With the town centre with all its shops and restaurants on your doorstep you can enjoy all Harrogate has to offer whilst staying here. This contemporary apartment has been tastefully decorated and equipped to a high standard with everything you would need for self-catering.
+
+Behind the external door, A communal hallway leads to the ground floor entrance door to the apartment. Inside there is a hallway leading to a lounge with window seat dining area and entertainment centre consisting of large screen TV with Virgin Media/dvd and Xbox with a selection of games, books and DVDs provided for guest use. Double sofa bed. Fully fitted kitchen with gas hob, microwave, electric oven, fridge with icebox, dishwasher, washer/dryer, and toaster along with all cutlery, crockery and cooking utensils and pans. Separate cloakroom toilet with wash handbasin on this level. Bedroom 1 (on the ground floor) with superking sized bed or can be split on request into 2x3ft singles, TV /DVD player and hair dryer. En Suite shower bath, toilet and basin.
+
+Downstairs to Bedrooms 2 and 3. Bedroom 2 has a superking bed which can be split into 2 x 3ft singles, TV /DVD player and hair dryer, ensuite bathroom with shower bath, toilet and basin.
+
+Bedroom 3 also has a superking bed which can be split into 2x 3ft singles, TV /DVD player and hair dryer, ensuite shower room with toilet and basin.
+
+All bedrooms have plenty of wardrobe and drawer space along with an ample supply of hangers. We provide toiletries and fluffy white towels for all bathrooms. Professionally laundered Egyptian cotton bed linen is provided and the apartment is thoroughly cleaned before your arrival.
+
+Services
+
+Gas central heating, unlimited hot water, microwave, fridge with freezer compartment, Gas hob, electric oven, dishwasher, washer/dryer, cafetierre, all cutlery, crockery and cooking pots and utensils for self catering,TV with Virgin Media package + further TV/DVD in each bedroom. Xbox and a selection of games. High speed WiFi throughout the apartment. All bedlinen and towels provided. Hair dryers are provided along with an iron and ironing board. Car parking to rear on first come first served basis - some on street parking permits can also be provided on request. Families welcome, travel cot available. No smoking. Short breaks accepted all year. Welcome tray of toiletries and beverages.One well behaved dog with £25 charge to cover additional cleaning (sorry no cats).</p>
+        </div>
+
+
+
     </div>
-
-
-
-    <h4>Property</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.PropertyAddress.AddressLine1)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PropertyAddress.AddressLine1)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PropertyDetails.DetailsId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PropertyDetails.DetailsId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.PropertyId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+</body>
 
 @Scripts.Render("~/scripts/better-simple-slideshow")
 <script>
