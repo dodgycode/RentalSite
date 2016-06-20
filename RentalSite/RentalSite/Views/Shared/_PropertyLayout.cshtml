@@ -10,8 +10,8 @@
     <link rel="icon" href="~/Images/ms-icon-310x310.png" />
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Open+Sans" rel="stylesheet" type="text/css" />
 </head>
-<body>
-    <nav class="navbar navbar-default navbar-notfixed-top">
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -23,14 +23,14 @@
                     <img src="~/Images/400dpiLogoCropped.png" width="170" class="navbar-brand"
                          title="Home from home accommodation" style="padding:0px;" />
                 </a>
-                @Html.ActionLink("Harrogate Holiday Apartments", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Harrogate Holiday Apartments", "Index", "Home", new { area = "" }, new { @class = "navbar-brand collapse navbar-collapse" })
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("PROPERTIES", "Index", "Properties")</li>
-                    <li>@Html.ActionLink("ABOUT", "About", "Home")</li>
-                    <li>@Html.ActionLink("SERVICES", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("CONTACT", "Contact", "Home")</li>
+                    <li><a href="#photos">PHOTOS</a></li>
+                    <li><a href="#summary">SUMMARY</a></li>
+                    <li><a href="#description">DESCRIPTION</a></li>
+                    <li><a href="#prices">PRICES</a></li>
                 </ul>
                 @*@Html.Partial("_LoginPartial")*@
             </div>

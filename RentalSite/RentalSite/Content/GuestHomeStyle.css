@@ -1,12 +1,14 @@
 ﻿ body {
       line-height: 1.8;
       color: #818181;
+      font-family:'Open Sans';
   }
    h2 {
       font-size: 24px;
       text-transform: uppercase;
       font-weight: 600;
       margin-bottom: 30px;
+      font-family:'Abril Fatface';
   }
   h4 {
       font-size: 19px;
@@ -23,11 +25,12 @@
 }
 
   .container-fluid {
-      padding: 60px 0px;
+      padding: 20px 0px;
   }
+
   .bg-grey {
       background-color: lightgray;
-      color:#666666;
+      color:black;
   }
   .bg-grey h1,
   .bg-grey h2,
@@ -142,6 +145,7 @@
       letter-spacing: 4px;
       border-radius: 0;
   }
+
   .navbar li a, .navbar .navbar-brand {
       color: #5c003a !important;
   }
