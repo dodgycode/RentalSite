@@ -10,6 +10,7 @@
     <link rel="icon" href="~/Images/ms-icon-310x310.png" />
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Open+Sans" rel="stylesheet" type="text/css" />
 </head>
+
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -23,7 +24,7 @@
                     <img src="~/Images/400dpiLogoCropped.png" width="170" class="navbar-brand"
                          title="Home from home accommodation" style="padding:0px;" />
                 </a>
-                @Html.ActionLink("Harrogate Holiday Apartments", "Index", "Home", new { area = "" }, new { @class = "navbar-brand collapse navbar-collapse" })
+                @Html.ActionLink("Harrogate Holiday Apartments", "Index", "Home", new { area = "" }, new { @class = "collapse navbar-brand  navbar-collapse" })
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
@@ -31,6 +32,7 @@
                     <li><a href="#summary">SUMMARY</a></li>
                     <li><a href="#description">DESCRIPTION</a></li>
                     <li><a href="#prices">PRICES</a></li>
+                    <li><a href="#availability">AVAILABILITY</a></li>
                 </ul>
                 @*@Html.Partial("_LoginPartial")*@
             </div>

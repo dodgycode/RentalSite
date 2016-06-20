@@ -139,6 +139,12 @@ namespace RentalSite.Models
         [Display(Name = "Number of bathrooms")]
         public int NumBathrooms { get; set; }
         public ParkingType Parking { get; set; }
+        [Display(Name = "Property summary")]
+        public string summaryText { get; set; }
+        [Display(Name = "Apartment description")]
+        public string apartmentText { get; set; }
+        [Display(Name = "Property services")]
+        public string servicesText { get; set; }
         public virtual Property CurrProperty { get; set; }
     }
 
