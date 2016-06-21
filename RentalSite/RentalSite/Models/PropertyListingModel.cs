@@ -33,12 +33,14 @@ namespace RentalSite.Models
             modelBuilder.Entity<Address>().ToTable("Address");
             modelBuilder.Entity<Details>().ToTable("PropertyDetails");
             modelBuilder.Entity<PropertyImage>().ToTable("PropertyImages");
+            modelBuilder.Entity<Booking>().ToTable("Bookings");
 
             //Set primary keys
             modelBuilder.Entity<Property>().HasKey(p => p.PropertyId);
             modelBuilder.Entity<Address>().HasKey(a => a.AddressId);
             modelBuilder.Entity<Details>().HasKey(d => d.DetailsId);
             modelBuilder.Entity<PropertyImage>().HasKey(i => i.PropertyImageId);
+            modelBuilder.Entity<Booking>().HasKey(i => i.BookingId);
 
             //Configure Property columns
             modelBuilder.Entity<Property>()
@@ -91,10 +93,18 @@ namespace RentalSite.Models
             modelBuilder.Entity<Property>()
                 .HasOptional<ICollection<PropertyImage>>(p => p.PropertyImages);
 
+            modelBuilder.Entity<Property>()
+                .HasOptional<ICollection<Booking>>(p => p.Bookings);
+
             modelBuilder.Entity<PropertyImage>()
                 .HasRequired(p => p.CurrProperty)
                 .WithMany(i => i.PropertyImages)
                 .HasForeignKey(p => p.PropertyId);
+
+            modelBuilder.Entity<Booking>()
+               .HasRequired(p => p.CurrProperty)
+               .WithMany(i => i.Bookings)
+               .HasForeignKey(p => p.PropertyId);
         }
         #endregion
 
@@ -121,6 +131,7 @@ namespace RentalSite.Models
         public virtual Details PropertyDetails { get; set; }
         public virtual Address PropertyAddress { get; set; }
         public virtual ICollection<PropertyImage> PropertyImages { get; set; }
+        public virtual ICollection<Booking> Bookings { get; set; }
         public bool Active { get; set; }
     }
 
@@ -182,9 +193,52 @@ namespace RentalSite.Models
         public virtual Property CurrProperty { get; set; }
         public bool Active { get; set; }
     }
+
+    public class Booking
+    {
+        public Guid BookingId { get; set; }
+        public Guid PropertyId { get; set; }
+        public Guid PriceId { get; set; }
+        public BookingSource bookingSource { get; set; }
+        public bool Active { get; set; }
+        public DateTime Arrival { get; set; }
+        public DateTime Departure { get; set; }
+        [Display(Name ="Early check in?")]
+        public bool EarlyCheckin { get; set; }
+        [Display(Name ="Late check out?")]
+        public bool LateCheckout { get; set; }
+        public int Guests { get; set; }
+        public decimal DepositAmount { get; set; }
+        public decimal CompleteAmount { get; set; }
+        [Display(Name ="Invoice paid?")]
+        public bool InvoiceAmount { get; set; }
+        public virtual Property CurrProperty { get; set; }
+    }
+
+    //public class Price
+    //{
+    //    public Guid PriceId { get; set; }
+    //    public int MonThurPrice { get; set; }
+    //    public int FriSatPrice { get; set; }
+    //    public int SunPrice { get; set; }
+    //    public bool Active { get; set; }
+
+    //}
     #endregion
 
     #region Enums
+    public enum BookingSource
+    {
+        [Display(Name ="Harrogate Holiday Apartments")]
+        HHA,
+        [Display(Name ="Entered by owner")]
+            UserInput,
+        [Display(Name ="Imported from another calendar")]
+            CalendarImport,
+        [Display(Name ="AirBnB")]
+            AirBnB,
+    }
+
     public enum ParkingType
     {
         None,
