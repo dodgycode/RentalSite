@@ -122,7 +122,6 @@ namespace RentalSite.Models
         public virtual Address PropertyAddress { get; set; }
         public virtual ICollection<PropertyImage> PropertyImages { get; set; }
         public bool Active { get; set; }
-
     }
 
     /// <summary>

@@ -45,10 +45,10 @@ namespace RentalSite
             // This is similar to the RememberMe option when you log in.
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
-            // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
+            //Uncomment the following lines to enable logging in with third party login providers
+            app.UseMicrosoftAccountAuthentication(
+                clientId: "27e206f4-669e-4ef7-a9eb-c993d20404fb",
+                clientSecret: "Hwe2tJFPKAsgm0TpguVPxYP");
 
             //app.UseTwitterAuthentication(
             //   consumerKey: "",
@@ -58,11 +58,11 @@ namespace RentalSite
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "361449458075-0n6psff30t2mksrqg8pdjvuspgfgeqqc.apps.googleusercontent.com",
+                ClientSecret = "DMiG_qa48FT129ShjXgd_S18"
+            });
         }
     }
 }

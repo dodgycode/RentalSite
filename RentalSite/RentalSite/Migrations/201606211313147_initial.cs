@@ -44,6 +44,9 @@ namespace RentalSite.Migrations
                         NumBedrooms = c.Int(nullable: false),
                         NumBathrooms = c.Int(nullable: false),
                         Parking = c.Int(nullable: false),
+                        summaryText = c.String(),
+                        apartmentText = c.String(),
+                        servicesText = c.String(),
                     })
                 .PrimaryKey(t => t.DetailsId)
                 .ForeignKey("Admin.Property", t => t.DetailsId)

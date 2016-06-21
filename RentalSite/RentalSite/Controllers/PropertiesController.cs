@@ -47,6 +47,7 @@ namespace RentalSite.Controllers
         [Route("create-listing")]
         public ActionResult Create()
         {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
             Property property = new Property();
             property.PropertyId = Guid.NewGuid();
             property.Active = true;
@@ -61,6 +62,7 @@ namespace RentalSite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "PropertyId, Name")] Property property)
         {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
             if (ModelState.IsValid)
             {
                 bool isSavedSuccessfully = false;
@@ -92,6 +94,7 @@ namespace RentalSite.Controllers
         // GET: Properties/PropertyEditor/5
         public ActionResult PropertyEditor(Guid? id)
         {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -112,6 +115,7 @@ namespace RentalSite.Controllers
         // POST: Save images async from dropzone
         public async Task<ActionResult> SaveImage(Guid propertyId)
         {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
             bool isSavedSuccessfully = true;
             string fName = "";
             try
@@ -153,6 +157,7 @@ namespace RentalSite.Controllers
         // GET: Properties/Edit/5
         public ActionResult Edit(Guid? id)
         {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -174,6 +179,7 @@ namespace RentalSite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "PropertyId,Name")] Property property)
         {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
             if (ModelState.IsValid)
             {
                 db.Entry(property).State = EntityState.Modified;
@@ -188,6 +194,7 @@ namespace RentalSite.Controllers
         // GET: Properties/Delete/5
         public ActionResult Delete(Guid? id)
         {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -205,6 +212,7 @@ namespace RentalSite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
+            if (!User.Identity.IsAuthenticated) { return RedirectToAction("Login", "Account"); }
             Property property = db.Properties.Find(id);
             db.Properties.Remove(property);
             db.SaveChanges();

@@ -57,6 +57,18 @@ namespace RentalSite.Migrations
                 }
                 );
 
+            context.PropertyImages.AddOrUpdate(
+                i => i.PropertyImageId,
+                new Models.PropertyImage
+                {
+                    PropertyImageId = new Guid("8c0b7742-83b3-4570-81be-e28a514984ac"),
+                    PropertyId = new Guid("a588f272-86c6-4f95-8bfe-71c654a10eb4"),
+                    Active = true,
+                    Caption = "caption text",
+                    Title = "title text",
+                    ImageURL = "https://hhlhotblob.blob.core.windows.net/propertyimages/8c0b7742-83b3-4570-81be-e28a514984ac"
+                });
+            
         }
     }
 }
