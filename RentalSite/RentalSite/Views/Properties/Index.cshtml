@@ -8,26 +8,33 @@
     @Styles.Render("~/content/PropertyEdit")
 </head>
 
-<h2>@ViewBag.Title</h2>
+<body>
+    <h2>@ViewBag.Title</h2>
 
-@foreach (var item in Model)
-{
-    <div class="row PropertyListItem">
-        <div class="col-md-4">
-            <a href="@Url.Action("Details", "Properties", new { @id = item.PropertyId })">
-                <img src="~/Images/ms-icon-310x310.png" width="250" class="PropertyListItem.img" />
-            </a>
-        </div>
-        <div class="col-md-8">
-            @Html.ActionLink(item.Name, "Details", "Properties", new { @id = item.PropertyId }, new { @class = "h3" })
-            <div><b>Sleeps:</b> @Html.DisplayFor(modelItem => item.PropertyDetails.NumSleeps)</div>
-            <div>Starting from <b>£130</b> per night!</div>
+    <div class="panel-body">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 PropertyListItem ">
+                <div>
+                    <a href="@Url.Action("Details", "Properties", new { @id = item.PropertyId })">
+                        <img src="~/Images/ms-icon-310x310.png" />
+                    </a>
+                </div>
+                <div>
+                    @Html.ActionLink(item.Name, "Details", "Properties", new { @id = item.PropertyId }, new { @class = "h3" })
+                    <div><b>Guests:</b> @Html.DisplayFor(modelItem => item.PropertyDetails.NumSleeps)</div>
+                    <div><b>Bedrooms:</b> @Html.DisplayFor(modelItem => item.PropertyDetails.NumBedrooms)</div>
+                    <div><b>Bathrooms:</b> @Html.DisplayFor(modelItem => item.PropertyDetails.NumBathrooms)</div>
+                    <div>Starting from <b>£130</b> per night!</div>
 
-            <input type="button" class="btn btn-default" value="Find out more!"
-                   onclick="location.href='@Url.Action("Details", "Properties", new { @id = item.PropertyId })'">
-        </div>
+                    <input type="button" class="btn btn-default text-center" value="Find out more and book!"
+                           onclick="location.href='@Url.Action("Details", "Properties", new {  @id = item.PropertyId })'">
+                </div>
 
+            </div>
+        }
     </div>
-}
+</body>
+
 
 

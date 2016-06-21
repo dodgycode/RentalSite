@@ -132,11 +132,11 @@ namespace RentalSite.Models
     {
         public Guid DetailsId { get; set; }
         public Guid PropertyId { get; set; }
-        [Display(Name = "Sleeps")]
+        [Display(Name = "Guests")]
         public int NumSleeps { get; set; }
-        [Display(Name = "Number of bedrooms")]
+        [Display(Name = "Bedrooms")]
         public int NumBedrooms { get; set; }
-        [Display(Name = "Number of bathrooms")]
+        [Display(Name = "Bathrooms")]
         public int NumBathrooms { get; set; }
         public ParkingType Parking { get; set; }
         [Display(Name = "Property summary")]

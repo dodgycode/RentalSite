@@ -26,16 +26,14 @@ h1,h2,h3,h4,h5,h6 {
     padding-right: 0px;
     background-image:url(/Images/cream_dust_@2X.png);
     background-color:white;
-    border-bottom-left-radius:10px;
-    border-bottom-right-radius:10px;
-    box-shadow: 0px 0px 20px black;
+    box-shadow: 0px 2px 50px black;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
 .dl-horizontal dt {
-    white-space: normal;
+    white-space:normal;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -53,6 +51,10 @@ textarea {
 .container .jumbotron{
     border-radius:10px;
     box-shadow: 2px 2px 8px black;
+}
+
+.btn{
+    margin:5px;
 }
 
 .btn-default{

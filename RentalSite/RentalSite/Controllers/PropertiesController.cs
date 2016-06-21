@@ -18,6 +18,7 @@ namespace RentalSite.Controllers
         private PropertyListingModel db = new PropertyListingModel();
 
         // GET: Properties
+        [Route("Properties/PropertyList")]
         public ActionResult Index()
         {
             var properties = db.Properties
@@ -28,7 +29,7 @@ namespace RentalSite.Controllers
         }
 
         // GET: Properties/Details/5
-        public ActionResult Details(Guid? id)
+        public ActionResult Details( Guid? id)
         {
             if (id == null)
             {
@@ -43,6 +44,7 @@ namespace RentalSite.Controllers
         }
 
         // GET: Properties/Create
+        [Route("create-listing")]
         public ActionResult Create()
         {
             Property property = new Property();
