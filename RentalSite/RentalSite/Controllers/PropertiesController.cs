@@ -17,6 +17,7 @@ namespace RentalSite.Controllers
         /// </summary>
         private PropertyListingModel db = new PropertyListingModel();
 
+        #region View properties
         // GET: Properties
         [Route("Properties/PropertyList")]
         public ActionResult Index()
@@ -42,6 +43,71 @@ namespace RentalSite.Controllers
             }
             return View(property);
         }
+
+        //GET: Properties/Details/QuotedPrice
+        public ActionResult QuotedPrice (Property model, DateTime arrival,
+                        DateTime depart,
+                        bool earlyCheckIn,
+                        bool lateCheckOut,
+                        bool useSofaBeds)
+        {
+            if (model == null || arrival == null || depart == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var newBooking = new Booking();
+            newBooking.BookingId = Guid.NewGuid();
+            newBooking.PropertyId = model.PropertyId;
+            newBooking.Active = false;
+
+            // First check it is available
+            foreach (var booking in model.Bookings)
+            {
+                if (arrival >= booking.Arrival && arrival < booking.Departure)
+                {
+                    //Do something to show there is an overlap
+                }
+
+                if (depart <= booking.Departure && depart > booking.Arrival )
+                {
+                    //Do something to show there is an overlap
+                }
+            }
+            
+            //Find pricing rates per night
+            for (DateTime start = arrival; start < depart; start.AddDays(1))
+            {
+                var rate = 0.0M; //Find rate for each night
+                newBooking.CompleteAmount += rate;
+            }
+
+            //Charge for early/late checking
+            if (earlyCheckIn || lateCheckOut)
+            {
+                var earlyLateRate = 0.0M; // Get early/late rate
+                    if (earlyCheckIn) { newBooking.CompleteAmount += earlyLateRate; }
+                    if (lateCheckOut) { newBooking.CompleteAmount += earlyLateRate; }
+            }
+
+            //Charge for sofa beds
+            if (useSofaBeds)
+            {
+                var sofaBedRate = 0.0M; //Get sofa bed rate
+                newBooking.CompleteAmount += sofaBedRate;
+            }
+
+            // Work out deposit and invoice amount
+            newBooking.DepositAmount = Math.Round(newBooking.CompleteAmount / 5,0);
+            newBooking.InvoiceAmount = Math.Round(newBooking.CompleteAmount / 20,2);
+
+            model.Bookings.Add(newBooking); 
+
+            return View(newBooking);
+        }
+        #endregion
+
+        #region Edit properties
 
         // GET: Properties/Create
         [Route("create-listing")]
@@ -227,5 +293,6 @@ namespace RentalSite.Controllers
             }
             base.Dispose(disposing);
         }
+        #endregion
     }
 }

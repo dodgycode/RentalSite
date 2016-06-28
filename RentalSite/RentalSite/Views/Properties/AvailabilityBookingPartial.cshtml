@@ -1,0 +1,149 @@
+﻿@model RentalSite.Models.Property
+
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/dhtmlxcalendar.css" />
+    <script src="~/Scripts/dhtmlxcalendar.js"></script>
+</head>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container-fluid">
+        <h2>BOOKING</h2>
+
+        @*Arrival date*@
+        <div>
+            <div class="control-label">First night:</div>
+            <input type="datetime" id="arrivecalendar_input" name="ArrivalDate" value="Arrival date" class="form-control">
+            <span class="glyphicon glyphicon-calendar" id="arrivecalendar-icon" />
+
+            <script type="text/javascript">
+                var arriveCalendar = new dhtmlXCalendarObject(
+        { input: "arrivecalendar_input", button: "arrivecalendar_icon" });
+
+                //Grey out non-available dates
+                @for( int i = 0; i < Model.Bookings.Count; i++)
+            {
+                for (DateTime d = Model.Bookings.ElementAt(i).Arrival; d <= Model.Bookings.ElementAt(i).Departure; d.AddDays(1))
+                {
+                    @: arriveCalendar.setHolidays(@d);
+                                                            }
+            }
+
+                arriveCalendar.hideTime();
+                arriveCalendar.setPosition("bottom");
+            </script>
+        </div>
+
+        @*Departure date*@
+        <div>
+            <div class="control-label">Last morning:</div>
+            <input type="datetime" id="departcalendar_input" name="DepartureDate" value="Departure date" class="form-control">
+            <span class="glyphicon glyphicon-calendar" id="departcalendar-icon" />
+
+            <script type="text/javascript">
+                var departCalendar = new dhtmlXCalendarObject(
+        { input: "departcalendar_input", button: "departcalendar_icon" });
+
+                //Grey out non-available dates
+                @for( int i = 0; i < Model.Bookings.Count; i++)
+            {
+                for (DateTime d = Model.Bookings.ElementAt(i).Arrival; d <= Model.Bookings.ElementAt(i).Departure; d.AddDays(1))
+                {
+                    @: departCalendar.setHolidays(@d);
+                                                            }
+            }
+
+                departCalendar.hideTime();
+                departCalendar.setPosition("bottom");
+            </script>
+        </div>
+
+        @*Early check-in?*@
+        <div class="control-label">
+            Check in from 11 am for an additional £10?
+            Normal check in is from 3 pm.
+        </div>
+        <input type="checkbox" name="earlyCheckIn" class="form-control" />
+
+        @*Late check-out?*@
+        <div class="control-label">
+            Check out by 3 pm for an additional £10?
+            Normal check out is by 11 am.
+        </div>
+        <input type="checkbox" name="lateCheckOut" class="form-control" />
+
+        @*Extra sofa beds?*@
+        <div class="control-label">
+            Check this box to accommodate an additional 2 guests.
+            Normal occupancy is for @Model.PropertyDetails.NumSleeps guests.
+            This property can accommodate @Model.PropertyDetails.NumSleeps + 2. Due to
+            the extra cleaning and wear and tear on the property this will cost an additional £25.
+        </div>
+        <input type="checkbox" name="sofaBedsUsed" id="sofaBedsUsed" class="form-control" />
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="button" id="GetPriceButton" value="How much will my stay cost?" class="btn btn-lg" />
+            </div>
+        </div>
+
+        @*Put quoted price here*@
+        <div id="quotedPrice">
+
+        </div>
+
+        <script type="text/javascript">
+            $('#GetPriceButton').click(function () {
+                var url = "/Properties/QuotedPrice";
+
+                $("#quotedPrice")
+                    .html('<img src="/Images/loader-wide.gif"/>')
+                    .load(url,
+                    {
+                        model: @Model,
+                        arrival: $(ArrivalDate).val,
+                        depart: $(DepartureDate).val,
+                        earlyCheckIn: $(earlyCheckIn).val,
+                        lateCheckOut: $(lateCheckOut).val,
+                        useSofaBeds: $(sofaBedsUsed).val
+                    });
+            });
+        </script>
+
+
+
+        <script>
+            function getPrice() {
+                var xhttp;
+                if (window.XMLHttpRequest) {
+                    // code for modern browsers
+                    xhttp = new XMLHttpRequest();
+                } else {
+                    // code for IE6, IE5
+                    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+
+                xhttp.onreadystatechange = function () {
+                    if (xhttp.readyState == 4 && xhttp.status == 200) {
+                        document.getElementById("quotedPrice").innerHTML = xhttp.responseText;
+                    }
+                };
+                xhttp.open("POST", "ajax_info.txt", true);
+
+                xhttp.send();
+            }
+        </script>
+
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/FullCalendarScripts")
+
+}

@@ -4,6 +4,21 @@
     ViewBag.Title = Model.Name;
     Layout = "~/Views/Shared/_PropertyLayout.cshtml";
 }
+<head>
+    @Scripts.Render("~/bundles/FullCalendarScripts")
+    @Styles.Render("~/bundles/FullCalendarStyle")
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            // page is now ready, initialize the calendar...
+
+            $('#calendar').fullCalendar({
+              //Put options stuff here
+            })
+
+        });
+    </script>
+</head>
 @Styles.Render("~/content/simple-slideshow-styles")
 
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -154,6 +169,12 @@
                     <td>£250</td>
                     <td>£200</td>
                 </tr>
+                <tr>
+                    <td>Peak rate</td>
+                    <td>£275</td>
+                    <td>£300</td>
+                    <td>£250</td>
+                </tr>
             </table>
             <br/>
             <h4>EXTRAS</h4>
@@ -162,8 +183,8 @@
         </div>
 
         @*Availability*@
-        <div class="container-fluid text-center" id="availability">
-
+        <div class="container-fluid text-center bg-green" id="booking">
+            @Html.Partial("AvailabilityBookingPartial",Model)
         </div>
 </body>
 
@@ -184,3 +205,5 @@
     }
     makeBSS('.bss-slides', opts)
 </script>
+
+

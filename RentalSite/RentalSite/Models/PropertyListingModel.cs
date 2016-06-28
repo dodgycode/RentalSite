@@ -211,7 +211,10 @@ namespace RentalSite.Models
         public decimal DepositAmount { get; set; }
         public decimal CompleteAmount { get; set; }
         [Display(Name ="Invoice paid?")]
-        public bool InvoiceAmount { get; set; }
+        public decimal InvoiceAmount { get; set; }
+        bool depositPaid { get; set; }
+        bool completePaid { get; set; }
+        bool invoicePaid { get; set; }
         public virtual Property CurrProperty { get; set; }
     }
 

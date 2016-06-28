@@ -240,6 +240,14 @@
     <Compile Include="Migrations\201606211313147_initial.Designer.cs">
       <DependentUpon>201606211313147_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606231256140_f.cs" />
+    <Compile Include="Migrations\201606231256140_f.Designer.cs">
+      <DependentUpon>201606231256140_f.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606281521290_changedBooking.cs" />
+    <Compile Include="Migrations\201606281521290_changedBooking.Designer.cs">
+      <DependentUpon>201606281521290_changedBooking.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -251,6 +259,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\dhtmlxcalendar.css" />
     <Content Include="Content\dropzone.css" />
     <Content Include="Content\GuestHomeStyle.css" />
     <Content Include="Content\simple-slideshow-styles.css" />
@@ -266,8 +275,15 @@
     <Content Include="Images\400dpiLogoCropped.png" />
     <Content Include="Images\400dpiLogoCroppedBW.png" />
     <Content Include="Images\arrows-alt_ffffff_64.png" />
+    <Content Include="Images\CalendarImages\dhxcalendar_arrow_left.png" />
+    <Content Include="Images\CalendarImages\dhxcalendar_arrow_right.png" />
+    <Content Include="Images\CalendarImages\dhxcalendar_clock.png" />
+    <Content Include="Images\CalendarImages\dhxcalendar_marker.gif" />
+    <Content Include="Images\CalendarImages\dhxcalendar_selector_bottom.gif" />
+    <Content Include="Images\CalendarImages\dhxcalendar_selector_top.gif" />
     <Content Include="Images\compress_ffffff_64.png" />
     <Content Include="Images\cream_dust_%402X.png" />
+    <Content Include="Images\loader-wide.gif" />
     <Content Include="Images\ms-icon-310x310.png" />
     <Content Include="Images\SmallLogo.png" />
     <Content Include="Images\SmallLogoBW.png" />
@@ -282,6 +298,7 @@
     <Content Include="Content\PropertyEdit.less" />
     <None Include="Properties\PublishProfiles\HarrogateHolidayLettings.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\dhtmlxcalendar.js" />
     <Content Include="Scripts\dropzone.js" />
     <Content Include="Scripts\dropzone\basic.css" />
     <Content Include="Scripts\dropzone\basic.min.css" />
@@ -300,6 +317,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\toastr.js" />
@@ -342,6 +360,7 @@
     <Content Include="Views\Properties\PropertyEditor.cshtml" />
     <Content Include="Views\Shared\_StartLayout.cshtml" />
     <Content Include="Views\Shared\_PropertyLayout.cshtml" />
+    <Content Include="Views\Properties\AvailabilityBookingPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -358,6 +377,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201606211313147_initial.resx">
       <DependentUpon>201606211313147_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606231256140_f.resx">
+      <DependentUpon>201606231256140_f.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606281521290_changedBooking.resx">
+      <DependentUpon>201606281521290_changedBooking.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
